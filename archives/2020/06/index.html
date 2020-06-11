@@ -172,7 +172,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -366,8 +366,7 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>#算法效率度量方法</p>
-<hr>
+      <h1 id="算法效率度量方法"><a href="#算法效率度量方法" class="headerlink" title="算法效率度量方法"></a>算法效率度量方法</h1><hr>
 <ul>
 <li>测量方法<ul>
 <li>事后统计方法<ul>
@@ -512,198 +511,6 @@
       
         
   <h2 class="title">
-    <a href="/2020/06/11/线性表/">
-      线性表
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>16131zzzzzzzz</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-06-11</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>#线性表</p>
-<hr>
-<p>##线性表1</p>
-<ul>
-<li>线性表的定义<ul>
-<li>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表<ul>
-<li>序列：先来后到</li>
-<li>第一个无前驱，最后一个无后继</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li><p>抽象数据类型</p>
-<ul>
-<li>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</li>
-</ul>
-</li>
-<li><p>C语言中数据类型可分为两类</p>
-<ul>
-<li>原子类型</li>
-</ul>
-</li>
-<li><p>可以不再分解的基本类型，如整型、浮点、字符</p>
-<ul>
-<li>结构类型</li>
-</ul>
-</li>
-<li><p>若干个类型组合而成</p>
-</li>
-</ul>
-<hr>
-<ul>
-<li>抽象数据类型标准格式<ul>
-<li>ADT 抽象数据类型名</li>
-<li>DATA 数据元素之间逻辑关系的定义</li>
-<li>Operation 操作</li>
-<li>endADT</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>##线性表2</p>
-<ul>
-<li>定义<ul>
-<li>ADT<ul>
-<li>线性表（List）</li>
-</ul>
-</li>
-<li>Data<ul>
-<li>数据对象集合为{a1,a2,…,an} 每个元素为DataType</li>
-<li>除最后一个元素都有后继 除第一个元素都有前驱</li>
-</ul>
-</li>
-<li>Operation<ul>
-<li>InitList(*L):建立空表</li>
-<li>ListEmpty(L):判断是否为空</li>
-<li>ClearList(*L):清空线性表</li>
-<li>GetElem(L,i,*e):返回第i个位置的元素给e</li>
-<li>LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0</li>
-<li>ListInsert(*L,i,e):第i个位置插入新元素e</li>
-<li>ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</li>
-<li>ListLength(L):返回L的元素个数</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>##线性表3</p>
-<ul>
-<li>线性表的物理存储结构<ul>
-<li>顺序存储结构<ul>
-<li>连续的存储单元依次存储数据元素</li>
-<li>预留一定空间</li>
-<li>封装需要三个属性<ul>
-<li>存储空间的起始位置</li>
-<li>线性表的最大存储容量</li>
-<li>线性表的当期长度</li>
-</ul>
-</li>
-<li>第i个数据元素位置可随时推算出:$LOC(ai) = LOC(a1) + (i-1)*c$</li>
-<li>用c表示每个数据元素所占大小</li>
-<li>存储时间性能为$O(1)$,称为随机存储结构</li>
-<li>获得元素操作<ul>
-<li>只需要返回第i-1下标的值就可以</li>
-<li>Status是一个整型，返回0代表ERROR，返回1代表OK</li>
-</ul>
-</li>
-<li>插入元素操作<ul>
-<li>检查表是否满了</li>
-<li>检查i是否在范围内</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
-        
-          <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
     <a href="/2020/06/11/绪论/">
       绪论
     </a>
@@ -764,8 +571,7 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p>#绪论</p>
-<hr>
+      <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><hr>
 <ul>
 <li>程序设计=数据结构+算法</li>
 <li>数据结构是关系</li>
@@ -829,6 +635,194 @@
 <li>可读性</li>
 <li>健壮性</li>
 <li>时间效率低和存储量低</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
+        
+          <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/06/11/线性表/">
+      线性表
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>16131zzzzzzzz</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-11</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><hr>
+<h2 id="线性表1"><a href="#线性表1" class="headerlink" title="线性表1"></a>线性表1</h2><ul>
+<li>线性表的定义<ul>
+<li>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表<ul>
+<li>序列：先来后到</li>
+<li>第一个无前驱，最后一个无后继</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>抽象数据类型</p>
+<ul>
+<li>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</li>
+</ul>
+</li>
+<li><p>C语言中数据类型可分为两类</p>
+<ul>
+<li>原子类型</li>
+</ul>
+</li>
+<li><p>可以不再分解的基本类型，如整型、浮点、字符</p>
+<ul>
+<li>结构类型</li>
+</ul>
+</li>
+<li><p>若干个类型组合而成</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>抽象数据类型标准格式<ul>
+<li>ADT 抽象数据类型名</li>
+<li>DATA 数据元素之间逻辑关系的定义</li>
+<li>Operation 操作</li>
+<li>endADT</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性表2"><a href="#线性表2" class="headerlink" title="线性表2"></a>线性表2</h2><ul>
+<li>定义<ul>
+<li>ADT<ul>
+<li>线性表（List）</li>
+</ul>
+</li>
+<li>Data<ul>
+<li>数据对象集合为{a1,a2,…,an} 每个元素为DataType</li>
+<li>除最后一个元素都有后继 除第一个元素都有前驱</li>
+</ul>
+</li>
+<li>Operation<ul>
+<li>InitList(*L):建立空表</li>
+<li>ListEmpty(L):判断是否为空</li>
+<li>ClearList(*L):清空线性表</li>
+<li>GetElem(L,i,*e):返回第i个位置的元素给e</li>
+<li>LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0</li>
+<li>ListInsert(*L,i,e):第i个位置插入新元素e</li>
+<li>ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</li>
+<li>ListLength(L):返回L的元素个数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性表3"><a href="#线性表3" class="headerlink" title="线性表3"></a>线性表3</h2><ul>
+<li>线性表的物理存储结构<ul>
+<li>顺序存储结构<ul>
+<li>连续的存储单元依次存储数据元素</li>
+<li>预留一定空间</li>
+<li>封装需要三个属性<ul>
+<li>存储空间的起始位置</li>
+<li>线性表的最大存储容量</li>
+<li>线性表的当期长度</li>
+</ul>
+</li>
+<li>第i个数据元素位置可随时推算出:$LOC(ai) = LOC(a1) + (i-1)*c$</li>
+<li>用c表示每个数据元素所占大小</li>
+<li>存储时间性能为$O(1)$,称为随机存储结构</li>
+<li>获得元素操作<ul>
+<li>只需要返回第i-1下标的值就可以</li>
+<li>Status是一个整型，返回0代表ERROR，返回1代表OK</li>
+</ul>
+</li>
+<li>插入元素操作<ul>
+<li>检查表是否满了</li>
+<li>检查i是否在范围内</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1033,7 +1027,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
   
     <a class="rightBtn"
     
@@ -1148,15 +1142,15 @@
     </div>
   
   <br>
-  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
 </div>
   <div>
     本站使用
     <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">16131zzzzzzzz</a>
-    作为主题
+    作為主題
     
       ，
-      总访问量为
+      總訪問量為
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
       次
     
@@ -1274,15 +1268,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "复制成功";
-  let COPY_FAILURE = "复制失败";
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
