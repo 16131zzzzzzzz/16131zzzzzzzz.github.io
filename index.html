@@ -172,7 +172,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="Search" />
+						<input type="text" class="input u-search-input" placeholder="搜索" />
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -313,6 +313,212 @@
       
         
   <h2 class="title">
+    <a href="/2020/06/11/算法效率度量/">
+      算法效率度量
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>16131zzzzzzzz</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-06-11</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>#算法效率度量方法</p>
+<hr>
+<ul>
+<li>测量方法<ul>
+<li>事后统计方法<ul>
+<li>需要先编制好程序</li>
+</ul>
+</li>
+<li>事前估算方法<ul>
+<li>策略方案</li>
+<li>编译产生代码质量</li>
+<li>问题的输入规模</li>
+<li>机器执行指令的速度</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>分析算法运行时间<ul>
+<li>不计循环索引的递增和循环终止条件等操作</li>
+<li>把基本操作和输入模式联系起来</li>
+<li>关注次数最高的项</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>时间复杂度<ul>
+<li>定义大O计法<ul>
+<li>问题规模记为$n$</li>
+<li>语句被执行的次数$T(n)$，即执行时间</li>
+<li>算法执行时间的增长率和$f(n)$的增长率相同表示为：$T(n) = O(f(n))$</li>
+<li>$O()$被称为大O计法</li>
+</ul>
+</li>
+<li>推导大O阶<ul>
+<li>用常数1取代运行时间中的所有加法常数</li>
+<li>修改后的运行次数函数中，只保留最高阶</li>
+<li>如果最高阶项存在且不为1，则去除与这个项相乘的常数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>时间复杂度</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>常数阶</td>
+<td>$O(1)$</td>
+<td>$2020$</td>
+</tr>
+<tr>
+<td>线性阶</td>
+<td>$O(n)$</td>
+<td>$3n+4$</td>
+</tr>
+<tr>
+<td>平方阶</td>
+<td>$O(n^k)$</td>
+<td>$3n^2+4n+5$</td>
+</tr>
+<tr>
+<td>对数阶</td>
+<td>$O(log(n))$</td>
+<td>$3log(2)n+4$</td>
+</tr>
+<tr>
+<td>nlogn阶</td>
+<td>$O(nlogn)$</td>
+<td>$2n+3nlog(2)n+14$</td>
+</tr>
+<tr>
+<td>指数阶</td>
+<td>$O(2^n)$</td>
+<td>$2^n$</td>
+</tr>
+<tr>
+<td>- 举例</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- $O(log(n))$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>, n = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">while</span>( i &lt; n )</span><br><span class="line">&#123;</span><br><span class="line">    i = i * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<ul>
+<li><p>时间复杂度消耗时间从小到大依次为:$O(1)&lt;O(logn)&lt;(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(n^n)$</p>
+</li>
+<li><p>$O(n^3)$之后基本不用考虑</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>算法空间复杂度<ul>
+<li>算法运行所用空间</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
+        
+          <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2020/06/11/线性表/">
       线性表
     </a>
@@ -374,46 +580,79 @@
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
       <p>#线性表</p>
-<p>##线性表1</p>
-<blockquote>
-<p>线性表的定义</p>
-<blockquote>
-<p>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表</p>
-<blockquote>
-<p>序列：先来后到<br>第一个无前驱，最后一个无后继</p>
-</blockquote>
-</blockquote>
-</blockquote>
 <hr>
-<blockquote>
-<p>抽象数据类型</p>
-<blockquote>
-<p>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>C语言中数据类型可分为两类</p>
-<blockquote>
-<p>原子类型<br>-可以不再分解的基本类型，如整型、浮点、字符<br>结构类型</p>
-</blockquote>
-</blockquote>
-<h2 id="若干个类型组合而成"><a href="#若干个类型组合而成" class="headerlink" title="-若干个类型组合而成"></a>-若干个类型组合而成</h2><blockquote>
-<p>抽象数据类型标准格式</p>
-<blockquote>
-<p>ADT 抽象数据类型名<br>DATA 数据元素之间逻辑关系的定义<br>Operation 操作<br>endADT</p>
-</blockquote>
-</blockquote>
+<p>##线性表1</p>
+<ul>
+<li>线性表的定义<ul>
+<li>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表<ul>
+<li>序列：先来后到</li>
+<li>第一个无前驱，最后一个无后继</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>抽象数据类型</p>
+<ul>
+<li>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</li>
+</ul>
+</li>
+<li><p>C语言中数据类型可分为两类</p>
+<ul>
+<li>原子类型</li>
+</ul>
+</li>
+<li><p>可以不再分解的基本类型，如整型、浮点、字符</p>
+<ul>
+<li>结构类型</li>
+</ul>
+</li>
+<li><p>若干个类型组合而成</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>抽象数据类型标准格式<ul>
+<li>ADT 抽象数据类型名</li>
+<li>DATA 数据元素之间逻辑关系的定义</li>
+<li>Operation 操作</li>
+<li>endADT</li>
+</ul>
+</li>
+</ul>
 <hr>
 <p>##线性表2</p>
-<blockquote>
-<p>定义</p>
-<blockquote>
-<p>ADT<br>-线性表（List）<br>Data<br>-数据对象集合为{a1,a2,…,an} 每个元素为DataType<br>-除最后一个元素都有后继 除第一个元素都有前驱<br>Operation<br>-InitList(<em>L):建立空表<br>-ListEmpty(L):判断是否为空<br>-ClearList(</em>L):清空线性表<br>-GetElem(L,i,<em>e):返回第i个位置的元素给e<br>-LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0<br>-ListInsert(</em>L,i,e):第i个位置插入新元素e<br>-ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</p>
-</blockquote>
-</blockquote>
-<h2 id="ListLength-L-返回L的元素个数"><a href="#ListLength-L-返回L的元素个数" class="headerlink" title="-ListLength(L):返回L的元素个数"></a>-ListLength(L):返回L的元素个数</h2><p>##线性表3</p>
-<p>###线性表的物理存储结构</p>
 <ul>
+<li>定义<ul>
+<li>ADT<ul>
+<li>线性表（List）</li>
+</ul>
+</li>
+<li>Data<ul>
+<li>数据对象集合为{a1,a2,…,an} 每个元素为DataType</li>
+<li>除最后一个元素都有后继 除第一个元素都有前驱</li>
+</ul>
+</li>
+<li>Operation<ul>
+<li>InitList(*L):建立空表</li>
+<li>ListEmpty(L):判断是否为空</li>
+<li>ClearList(*L):清空线性表</li>
+<li>GetElem(L,i,*e):返回第i个位置的元素给e</li>
+<li>LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0</li>
+<li>ListInsert(*L,i,e):第i个位置插入新元素e</li>
+<li>ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</li>
+<li>ListLength(L):返回L的元素个数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>##线性表3</p>
+<ul>
+<li>线性表的物理存储结构<ul>
 <li>顺序存储结构<ul>
 <li>连续的存储单元依次存储数据元素</li>
 <li>预留一定空间</li>
@@ -439,175 +678,8 @@
 </ul>
 </li>
 </ul>
-
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
-        
-          <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2020/06/11/算法效率度量/">
-      算法效率度量
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>16131zzzzzzzz</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-06-11</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="算法效率度量方法"><a href="#算法效率度量方法" class="headerlink" title="#算法效率度量方法"></a>#算法效率度量方法</h2><blockquote>
-<p>测量方法</p>
-<blockquote>
-<p>事后统计方法<br>-需要先编制好程序<br>事前估算方法<br>-策略方案<br>-编译产生代码质量<br>-问题的输入规模</p>
-</blockquote>
-</blockquote>
-<h2 id="机器执行指令的速度"><a href="#机器执行指令的速度" class="headerlink" title="-机器执行指令的速度"></a>-机器执行指令的速度</h2><blockquote>
-<p>分析算法运行时间</p>
-<blockquote>
-<p>不计循环索引的递增和循环终止条件等操作<br>把基本操作和输入模式联系起来<br>关注次数最高的项</p>
-</blockquote>
-</blockquote>
-<hr>
-<blockquote>
-<p>时间复杂度</p>
-<blockquote>
-<p>定义大O计法<br>-问题规模记为$n$<br>-语句被执行的次数$T(n)$，即执行时间<br>-算法执行时间的增长率和$f(n)$的增长率相同表示为：$T(n) = O(f(n))$<br>-$O()$被称为大O计法<br>推导大O阶<br>-用常数1取代运行时间中的所有加法常数<br>-修改后的运行次数函数中，只保留最高阶</p>
-</blockquote>
-</blockquote>
-<h2 id="如果最高阶项存在且不为1，则去除与这个项相乘的常数"><a href="#如果最高阶项存在且不为1，则去除与这个项相乘的常数" class="headerlink" title="-如果最高阶项存在且不为1，则去除与这个项相乘的常数"></a>-如果最高阶项存在且不为1，则去除与这个项相乘的常数</h2><table>
-<thead>
-<tr>
-<th>术语</th>
-<th>时间复杂度</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>常数阶</td>
-<td>$O(1)$</td>
-<td>$2020$</td>
-</tr>
-<tr>
-<td>线性阶</td>
-<td>$O(n)$</td>
-<td>$3n+4$</td>
-</tr>
-<tr>
-<td>平方阶</td>
-<td>$O(n^k)$</td>
-<td>$3n^2+4n+5$</td>
-</tr>
-<tr>
-<td>对数阶</td>
-<td>$O(log(n))$</td>
-<td>$3log(2)n+4$</td>
-</tr>
-<tr>
-<td>nlogn阶</td>
-<td>$O(nlogn)$</td>
-<td>$2n+3nlog(2)n+14$</td>
-</tr>
-<tr>
-<td>指数阶</td>
-<td>$O(2^n)$</td>
-<td>$2^n$</td>
-</tr>
-</tbody></table>
-<blockquote>
-<blockquote>
-<p>举例<br>1.$O(log(n))$</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;<span class="keyword">int</span> i = <span class="number">1</span>, n = <span class="number">100</span>;</span><br><span class="line">&gt;&gt;<span class="keyword">while</span>( i &lt; n )</span><br><span class="line">&gt;&gt;&#123;</span><br><span class="line">&gt;&gt;    i = i * <span class="number">2</span>;</span><br><span class="line">&gt;&gt;&#125;</span><br><span class="line">&gt;&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</blockquote>
-<hr>
-<blockquote>
-<p>时间复杂度消耗时间从小到大依次为:$O(1)&lt;O(logn)&lt;(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(n^n)$</p>
-</blockquote>
-<blockquote>
-<p>$O(n^3)$之后基本不用考虑</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>算法空间复杂度</p>
-<blockquote>
-<p>算法运行所用空间</p>
-</blockquote>
-</blockquote>
+</li>
+</ul>
 
       
     </div>
@@ -699,35 +771,74 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="绪论"><a href="#绪论" class="headerlink" title="#绪论"></a>#绪论</h2><blockquote>
-<p>程序设计=数据结构+算法<br>数据结构是关系</p>
-</blockquote>
+      <p>#绪论</p>
 <hr>
-<blockquote>
-<p>逻辑结构</p>
-<blockquote>
-<p>集合结构<br>线性结构<br>树形结构<br>图形结构</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>物理结构<br>-如何把数据元素存储到计算机的存储器中</p>
-<blockquote>
-<p>顺序存储结构<br>-放在地址连续的储存单元里<br>链式存储结构<br>-时常要变化的结构</p>
-</blockquote>
-</blockquote>
-<h2 id="每个元素指向下一个元素地址"><a href="#每个元素指向下一个元素地址" class="headerlink" title="-每个元素指向下一个元素地址"></a>-每个元素指向下一个元素地址</h2><blockquote>
-<p>算法的基本特征</p>
-<blockquote>
-<p>输入<br>-有零个或多个输入<br>输出<br>-算法至少有一个或输出<br>有穷性<br>-有限步骤后自动结束<br>-每一步在有限时间内结束<br>确定性<br>-确定的含义<br>可行性</p>
-</blockquote>
-</blockquote>
+<ul>
+<li>程序设计=数据结构+算法</li>
+<li>数据结构是关系</li>
+</ul>
 <hr>
-<blockquote>
-<p>算法设计要求</p>
-<blockquote>
-<p>正确性<br>-无语法错误<br>-对合法输入正确输出<br>-对非法输入产生满足规格的说明<br>-对故意刁难的测试有正确输出<br>可读性<br>健壮性<br>时间效率低和存储量低</p>
-</blockquote>
-</blockquote>
+<ul>
+<li><p>逻辑结构</p>
+<ul>
+<li>集合结构</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图形结构</li>
+</ul>
+</li>
+<li><p>物理结构(如何把数据元素存储到计算机的存储器中)</p>
+<ul>
+<li>顺序存储结构<ul>
+<li>放在地址连续的储存单元里</li>
+</ul>
+</li>
+<li>链式存储结构<ul>
+<li>时常要变化的结构</li>
+<li>每个元素指向下一个元素地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>算法的基本特征<ul>
+<li>输入<ul>
+<li>有零个或多个输入</li>
+</ul>
+</li>
+<li>输出<ul>
+<li>算法至少有一个或输出</li>
+</ul>
+</li>
+<li>有穷性<ul>
+<li>有限步骤后自动结束</li>
+<li>每一步在有限时间内结束</li>
+</ul>
+</li>
+<li>确定性<ul>
+<li>有确定的含义</li>
+</ul>
+</li>
+<li>可行性</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>算法设计要求<ul>
+<li>正确性</li>
+<li>无语法错误</li>
+<li>对合法输入正确输出</li>
+<li>对非法输入产生满足规格的说明</li>
+<li>对故意刁难的测试有正确输出</li>
+<li>可读性</li>
+<li>健壮性</li>
+<li>时间效率低和存储量低</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -824,7 +935,7 @@
         <div class="readmore">
           <a href="/2019/08/07/Chinajoy-2019/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
+            阅读全文
           </a>
         </div>
       
@@ -1090,7 +1201,7 @@
         <div class="readmore">
           <a href="/2018/08/04/Chinajoy-2018/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
+            阅读全文
           </a>
         </div>
       
@@ -1292,7 +1403,7 @@
   <section class='widget tagcloud'>
     
 <header class='pure'>
-  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
   
     <a class="rightBtn"
     
@@ -1407,19 +1518,19 @@
     </div>
   
   <br>
-  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
   <div>
-    Use
+    本站使用
     <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">16131zzzzzzzz</a>
-    as theme
+    作为主题
     
-      , 
-      total visits
+      ，
+      总访问量为
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-      times
+      次
     
-    . 
+    。
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1525,15 +1636,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "Copied";
-  let COPY_FAILURE = "Copy failed";
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
