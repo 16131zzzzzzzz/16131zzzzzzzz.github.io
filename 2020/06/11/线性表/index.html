@@ -292,7 +292,7 @@
         
   
     <h1 class="title">
-      <a href="/2020/06/11/绪论/">
+      <a href="/2020/06/11/线性表/">
         绪论
       </a>
     </h1>
@@ -366,35 +366,72 @@
 
       <section class="article typo">
         <div class="article-entry" itemprop="articleBody">
-          <h2 id="绪论"><a href="#绪论" class="headerlink" title="#绪论"></a>#绪论</h2><blockquote>
-<p>程序设计=数据结构+算法<br>数据结构是关系</p>
-</blockquote>
-<hr>
+          <p>#线性表</p>
+<p>##线性表1</p>
 <blockquote>
-<p>逻辑结构</p>
+<p>线性表的定义</p>
 <blockquote>
-<p>集合结构<br>线性结构<br>树形结构<br>图形结构</p>
-</blockquote>
-</blockquote>
+<p>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表</p>
 <blockquote>
-<p>物理结构<br>-如何把数据元素存储到计算机的存储器中</p>
-<blockquote>
-<p>顺序存储结构<br>-放在地址连续的储存单元里<br>链式存储结构<br>-时常要变化的结构</p>
+<p>序列：先来后到<br>第一个无前驱，最后一个无后继</p>
 </blockquote>
-</blockquote>
-<h2 id="每个元素指向下一个元素地址"><a href="#每个元素指向下一个元素地址" class="headerlink" title="-每个元素指向下一个元素地址"></a>-每个元素指向下一个元素地址</h2><blockquote>
-<p>算法的基本特征</p>
-<blockquote>
-<p>输入<br>-有零个或多个输入<br>输出<br>-算法至少有一个或输出<br>有穷性<br>-有限步骤后自动结束<br>-每一步在有限时间内结束<br>确定性<br>-确定的含义<br>可行性</p>
 </blockquote>
 </blockquote>
 <hr>
 <blockquote>
-<p>算法设计要求</p>
+<p>抽象数据类型</p>
 <blockquote>
-<p>正确性<br>-无语法错误<br>-对合法输入正确输出<br>-对非法输入产生满足规格的说明<br>-对故意刁难的测试有正确输出<br>可读性<br>健壮性<br>时间效率低和存储量低</p>
+<p>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</p>
 </blockquote>
 </blockquote>
+<blockquote>
+<p>C语言中数据类型可分为两类</p>
+<blockquote>
+<p>原子类型<br>-可以不再分解的基本类型，如整型、浮点、字符<br>结构类型</p>
+</blockquote>
+</blockquote>
+<h2 id="若干个类型组合而成"><a href="#若干个类型组合而成" class="headerlink" title="-若干个类型组合而成"></a>-若干个类型组合而成</h2><blockquote>
+<p>抽象数据类型标准格式</p>
+<blockquote>
+<p>ADT 抽象数据类型名<br>DATA 数据元素之间逻辑关系的定义<br>Operation 操作<br>endADT</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>##线性表2</p>
+<blockquote>
+<p>定义</p>
+<blockquote>
+<p>ADT<br>-线性表（List）<br>Data<br>-数据对象集合为{a1,a2,…,an} 每个元素为DataType<br>-除最后一个元素都有后继 除第一个元素都有前驱<br>Operation<br>-InitList(<em>L):建立空表<br>-ListEmpty(L):判断是否为空<br>-ClearList(</em>L):清空线性表<br>-GetElem(L,i,<em>e):返回第i个位置的元素给e<br>-LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0<br>-ListInsert(</em>L,i,e):第i个位置插入新元素e<br>-ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</p>
+</blockquote>
+</blockquote>
+<h2 id="ListLength-L-返回L的元素个数"><a href="#ListLength-L-返回L的元素个数" class="headerlink" title="-ListLength(L):返回L的元素个数"></a>-ListLength(L):返回L的元素个数</h2><p>##线性表3</p>
+<p>###线性表的物理存储结构</p>
+<ul>
+<li>顺序存储结构<ul>
+<li>连续的存储单元依次存储数据元素</li>
+<li>预留一定空间</li>
+<li>封装需要三个属性<ul>
+<li>存储空间的起始位置</li>
+<li>线性表的最大存储容量</li>
+<li>线性表的当期长度</li>
+</ul>
+</li>
+<li>第i个数据元素位置可随时推算出:$LOC(ai) = LOC(a1) + (i-1)*c$</li>
+<li>用c表示每个数据元素所占大小</li>
+<li>存储时间性能为$O(1)$,称为随机存储结构</li>
+<li>获得元素操作<ul>
+<li>只需要返回第i-1下标的值就可以</li>
+<li>Status是一个整型，返回0代表ERROR，返回1代表OK</li>
+</ul>
+</li>
+<li>插入元素操作<ul>
+<li>检查表是否满了</li>
+<li>检查i是否在范围内</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
         </div>
         
@@ -406,7 +443,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-11T17:01:00+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-11T17:02:25+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
     <p>last updated at Jun 11, 2020</p>
@@ -431,7 +468,7 @@
       
         <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/06/11/绪论/&title=绪论 | zhuhaojia2001&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/06/11/线性表/&title=绪论 | zhuhaojia2001&summary="
           
           >
           
@@ -443,7 +480,7 @@
       
         <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/06/11/绪论/&title=绪论 | zhuhaojia2001&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/06/11/线性表/&title=绪论 | zhuhaojia2001&summary="
           
           >
           
@@ -455,7 +492,7 @@
       
         <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/06/11/绪论/&title=绪论 | zhuhaojia2001&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/06/11/线性表/&title=绪论 | zhuhaojia2001&summary="
           
           >
           
@@ -479,40 +516,21 @@
         
             <div class="prev-next">
                 
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
                                 <a href="/2020/06/11/算法效率度量/" rel="prev" title="绪论">
-                                  
-                                      绪论
-                                  
+                                    
+                                        绪论
+                                    
                                 </a>
                             </h4>
                             
                                 
                                 <h6 class="tags">
                                     <a class="tag" href="/tags/Data-structure-and-algorithm/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Data structure and algorithm</a> <a class="tag" href="/tags/notes/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>notes</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
-                
-                    <section class="next">
-                        <span class="art-item-right" aria-hidden="true">
-                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
-                            <h4>
-                                <a href="/2019/08/07/Chinajoy-2019/" rel="prev" title="Chinajoy-2019">
-                                    
-                                        Chinajoy-2019
-                                    
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/exhibitions/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>exhibitions</a> <a class="tag" href="/tags/entertainment/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>entertainment</a>
                                 </h6>
                             
                         </span>
@@ -623,7 +641,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#绪论"><span class="toc-text">#绪论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#每个元素指向下一个元素地址"><span class="toc-text">-每个元素指向下一个元素地址</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#若干个类型组合而成"><span class="toc-text">-若干个类型组合而成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ListLength-L-返回L的元素个数"><span class="toc-text">-ListLength(L):返回L的元素个数</span></a></li></ol>
     </div>
   </section>
 
