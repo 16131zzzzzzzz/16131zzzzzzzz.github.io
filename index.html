@@ -381,16 +381,50 @@
 
 <h2 id="测试安装成功"><a href="#测试安装成功" class="headerlink" title="测试安装成功"></a>测试安装成功</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
 
-<p>如果没有成功就多跑几次</p>
+<p>如果没有成功就再试一次，可能第一次不成功</p>
+<h1 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h1><h2 id="创建或修改-etc-docker-daemon-json-文件"><a href="#创建或修改-etc-docker-daemon-json-文件" class="headerlink" title="创建或修改 /etc/docker/daemon.json 文件"></a>创建或修改 /etc/docker/daemon.json 文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="在上述文件写入"><a href="#在上述文件写入" class="headerlink" title="在上述文件写入"></a>在上述文件写入</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主义不要有多余空格，缩进用Tab</li>
+<li>以上时中国docker官方镜像，也可以试试别的源<ul>
+<li>网易<br><a href="http://hub-mirror.c.163.com" target="_blank" rel="noopener">http://hub-mirror.c.163.com</a></li>
+<li>ustc<br><a href="https://docker.mirrors.ustc.edu.cn" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a></li>
+<li>中国科技大学<br><a href="https://docker.mirrors.ustc.edu.cn" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker.service</span><br></pre></td></tr></table></figure>
+
+<h1 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h1><h2 id="镜像列表"><a href="#镜像列表" class="headerlink" title="镜像列表"></a>镜像列表</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it ubuntu /bin/bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>-i</strong>: 交互式操作。</li>
+<li><strong>-t</strong>: 终端。</li>
+</ul>
+<h2 id="容器列表"><a href="#容器列表" class="headerlink" title="容器列表"></a>容器列表</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<h2 id="按Id启动容器"><a href="#按Id启动容器" class="headerlink" title="按Id启动容器"></a>按Id启动容器</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start b750bbbcfd88</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> 1e560fca3906</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以使用attach但是退出会使容器停止</li>
+</ul>
 
       
     </div>
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
-        
           <a href="/tags/Docker/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Docker</a>
+        
+          <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
         
       </div>
     
@@ -625,9 +659,9 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
-        
           <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
+        
+          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
         
       </div>
     
@@ -734,9 +768,9 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
-        
           <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
+        
+          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
         
       </div>
     
@@ -843,9 +877,9 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
-        
           <a href="/tags/notes/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>notes</a>
+        
+          <a href="/tags/Data-structure-and-algorithm/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Data structure and algorithm</a>
         
       </div>
     
