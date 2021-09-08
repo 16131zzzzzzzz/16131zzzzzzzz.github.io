@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Numpy和Pandas等操作总结 |  Hexo</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="https://i.loli.net/2021/09/08/gyhY6AmLfeFqjc1.png" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-np和pd"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Numpy和Pandas等操作总结
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/08/12/np%E5%92%8Cpd/" class="article-date">
+  <time datetime="2021-08-11T16:00:00.000Z" itemprop="datePublished">2021-08-12</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">8 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h1><p>一般拿到的都是CSV的数据，我们一般用pandas读取这些数据</p>
+<h2 id="CSV操作"><a href="#CSV操作" class="headerlink" title="CSV操作"></a>CSV操作</h2><h3 id="读csv"><a href="#读csv" class="headerlink" title="读csv"></a>读csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分割符sep 默认为&#x27;:&#x27;</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, sep=<span class="string">&#x27;:&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要表头header</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定要哪几列</span></span><br><span class="line">labels = [<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;attendance&#x27;</span>, <span class="string">&#x27;hw&#x27;</span>, <span class="string">&#x27;test1&#x27;</span>, <span class="string">&#x27;project1&#x27;</span>, <span class="string">&#x27;test2&#x27;</span>, <span class="string">&#x27;project2&#x27;</span>, <span class="string">&#x27;final&#x27;</span>]</span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, names=labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只读前n行</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, nrows = <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定数据类型</span></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, dtype=&#123;<span class="string">&#x27;test1&#x27;</span>:np.float64,<span class="string">&#x27;name&#x27;</span>:<span class="built_in">str</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跳过损坏的数据</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, error_bad_lines=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, encoding=<span class="string">&quot;utf -8&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定哪一列是索引</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, index_row=<span class="number">0</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+
+<h3 id="写csv"><a href="#写csv" class="headerlink" title="写csv"></a>写csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_powerplant.to_csv(<span class="string">&#x27;data_edited.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不要索引</span></span><br><span class="line">df_powerplant.to_csv(<span class="string">&#x27;data_edited.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="各色格式"><a href="#各色格式" class="headerlink" title="各色格式"></a>各色格式</h3><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>读</th>
+<th>写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CSV</td>
+<td>read_csv</td>
+<td>to_csv</td>
+</tr>
+<tr>
+<td>Excel</td>
+<td>read_excel</td>
+<td>to_excel</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>read_json</td>
+<td>to_json</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>read_html</td>
+<td>to_html</td>
+</tr>
+<tr>
+<td>clipboard</td>
+<td>read_clipboard</td>
+<td>to_clipboard</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>read_xml</td>
+<td>to_xml</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td></td>
+<td>to_markdown</td>
+</tr>
+</tbody></table>
+<p>SQL</p>
+<p>from <a target="_blank" rel="noopener" href="https://www.gairuo.com/p/pandas-io">https://www.gairuo.com/p/pandas-io</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要安装 sqlalchemy 库</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line"><span class="comment"># 创建数据库对象，sqlite 内存模式</span></span><br><span class="line">engine = create_engine(<span class="string">&#x27;sqlite:///:memory:&#x27;</span>)</span><br><span class="line"><span class="comment"># 把表名为 data 的表数据拿出来</span></span><br><span class="line"><span class="keyword">with</span> engine.connect() <span class="keyword">as</span> conn, conn.begin():</span><br><span class="line">    data = pd.read_sql_table(<span class="string">&#x27;data&#x27;</span>, conn)</span><br><span class="line"></span><br><span class="line"><span class="comment"># data</span></span><br><span class="line"><span class="comment"># 将数据写入</span></span><br><span class="line">data.to_sql(<span class="string">&#x27;data&#x27;</span>, engine)</span><br><span class="line"><span class="comment"># 大量写入</span></span><br><span class="line">data.to_sql(<span class="string">&#x27;data_chunked&#x27;</span>, engine, chunksize=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 使用 sql 查询</span></span><br><span class="line">pd.read_sql_query(<span class="string">&#x27;SELECT * FROM data&#x27;</span>, engine)</span><br><span class="line"><span class="comment"># 使用 sql 查询后直接指定数据类型，1.3.0+</span></span><br><span class="line">pd.read_sql_query(<span class="string">&#x27;SELECT * FROM data&#x27;</span>, dtype=&#123;<span class="string">&#x27;a&#x27;</span>: np.float64, <span class="string">&#x27;b&#x27;</span>: <span class="string">&#x27;str&#x27;</span>, <span class="string">&#x27;c&#x27;</span>: <span class="built_in">int</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p>可能有点乱，后面再补</p>
+<p><img src="https://www.gairuo.com/file/pic/2020/04/pandas_index_01.jpg" alt="pandas index"></p>
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_excel(<span class="string">&#x27;data.xlsx&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 头几条 尾几条</span></span><br><span class="line">df.head(<span class="number">10</span>)</span><br><span class="line">df.tail(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 看几条</span></span><br><span class="line">df.sample(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 形状 返回的是数组</span></span><br><span class="line">df.shape()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基本信息</span></span><br><span class="line">df.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据类型</span></span><br><span class="line">df.dtypes()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据量</span></span><br><span class="line">df.size()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有值变为列表矩阵</span></span><br><span class="line">df.to_numpy()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h2><h3 id="用pandas统计"><a href="#用pandas统计" class="headerlink" title="用pandas统计"></a>用pandas统计</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计每一列</span></span><br><span class="line">df.describe()</span><br><span class="line"></span><br><span class="line">df.mean() <span class="comment"># 返回所有列的均值</span></span><br><span class="line">df.mean(<span class="number">1</span>) <span class="comment"># 返回所有行的均值，下同</span></span><br><span class="line">df.corr() <span class="comment"># 返回列与列之间的相关系数</span></span><br><span class="line">df.count() <span class="comment"># 返回每一列中的非空值的个数</span></span><br><span class="line">df.<span class="built_in">max</span>() <span class="comment"># 返回每一列的最大值</span></span><br><span class="line">df.<span class="built_in">min</span>() <span class="comment"># 返回每一列的最小值</span></span><br><span class="line">df.<span class="built_in">abs</span>() <span class="comment"># 绝对值</span></span><br><span class="line">df.median() <span class="comment"># 返回每一列的中位数</span></span><br><span class="line">df.std() <span class="comment"># 返回每一列的标准差, 贝塞尔校正的样本标准偏差</span></span><br><span class="line">df.var() <span class="comment"># 无偏方差</span></span><br><span class="line">df.sem() <span class="comment"># 平均值的标准误差</span></span><br><span class="line">df.mode() <span class="comment"># 众数</span></span><br><span class="line">df.prod() <span class="comment"># 连乘</span></span><br><span class="line">df.mad() <span class="comment"># 平均绝对偏差</span></span><br><span class="line">df.cumprod() <span class="comment"># 累积连乘,累乘</span></span><br><span class="line">df.cumsum(axis=<span class="number">0</span>) <span class="comment"># 累积连加,累加</span></span><br><span class="line">df.nunique() <span class="comment"># 去重数量，不同值的量</span></span><br><span class="line">df.idxmax() <span class="comment"># 每列最大的值的索引名</span></span><br><span class="line">df.idxmin() <span class="comment"># 最小</span></span><br><span class="line">df.cummax() <span class="comment"># 累积最大值</span></span><br><span class="line">df.cummin() <span class="comment"># 累积最小值</span></span><br><span class="line">df.skew() <span class="comment"># 样本偏度 (第三阶)</span></span><br><span class="line">df.kurt() <span class="comment"># 样本峰度 (第四阶)</span></span><br><span class="line">df.quantile() <span class="comment"># 样本分位数 (不同 % 的值)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="用numpy统计"><a href="#用numpy统计" class="headerlink" title="用numpy统计"></a>用numpy统计</h3><p>但我更倾向于先to_numpy再处理</p>
+<h4 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">np.arange(<span class="number">10</span>, <span class="number">25</span>, <span class="number">5</span>, <span class="built_in">float</span>)</span><br><span class="line"><span class="comment"># start(include) stop(exclude) step dtype</span></span><br><span class="line"><span class="comment"># [10, 15, 20]</span></span><br><span class="line"></span><br><span class="line">np.linspace(<span class="number">1</span>, <span class="number">10</span>, <span class="number">4</span>)</span><br><span class="line"><span class="comment"># start stop num endpoint(include stop or not) dtype</span></span><br><span class="line"><span class="comment"># 等差</span></span><br><span class="line"><span class="comment"># [1, 4, 7, 10]</span></span><br><span class="line"></span><br><span class="line">numpy.logspace(<span class="number">1</span>, <span class="number">2</span>, num=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># start(start from base^start) stop(end at base^stop) num endpoint(include stop or not) base(底数默认10) dtype</span></span><br><span class="line"><span class="comment"># 等比</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="查看-1"><a href="#查看-1" class="headerlink" title="查看"></a>查看</h4><p>关于ndarray的axis参数</p>
+<p><img src="https://www.gairuo.com/file/pic/2020/04/n-dimension-array.png" alt="Numpy"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建15个元素的数组，形状修改成 3 行 5 列</span></span><br><span class="line">a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">a</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">array([[ 0,  1,  2,  3,  4],</span></span><br><span class="line"><span class="string">       [ 5,  6,  7,  8,  9],</span></span><br><span class="line"><span class="string">       [10, 11, 12, 13, 14]])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">a.shape <span class="comment"># 形状</span></span><br><span class="line"><span class="comment"># (3, 5)</span></span><br><span class="line"></span><br><span class="line">a.ndim <span class="comment"># 维数</span></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line"></span><br><span class="line">a.size <span class="comment"># 大小，元素数</span></span><br><span class="line"><span class="comment"># 15</span></span><br></pre></td></tr></table></figure>
+
+<p>未完待续。。。</p>
+<p><a target="_blank" rel="noopener" href="https://www.gairuo.com/p/numpy-ndarray-object">https://www.gairuo.com/p/numpy-ndarray-object</a></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>all([axis, out, keepdims])</td>
+<td>如果所有元素的布尔计算结果都为 True，则返回 True</td>
+</tr>
+<tr>
+<td>any([axis, out, keepdims])</td>
+<td>如果元素的任何元素的布尔值为 True，则返回 True，否则为 False</td>
+</tr>
+<tr>
+<td>argmax([axis, out])</td>
+<td>沿给定轴返回最大值的索引</td>
+</tr>
+<tr>
+<td>argmin([axis, out])</td>
+<td>沿给定轴返回最小值的索引</td>
+</tr>
+<tr>
+<td>argpartition(kth[, axis, kind, order])</td>
+<td>返回将对此数组进行分区的索引</td>
+</tr>
+<tr>
+<td>argsort([axis, kind, order])</td>
+<td>返回将对此数组进行排序的索引</td>
+</tr>
+<tr>
+<td>astype(dtype[, order, casting, subok, copy])</td>
+<td>强制转换为指定类型后返回数组的副本</td>
+</tr>
+<tr>
+<td>byteswap([inplace])</td>
+<td>交换数组元素的字节</td>
+</tr>
+<tr>
+<td>choose(choices[, out, mode])</td>
+<td>使用索引数组从一组选项构造新数组</td>
+</tr>
+<tr>
+<td>clip([min, max, out])</td>
+<td>返回值限制为 [min，max] 的数组</td>
+</tr>
+<tr>
+<td>compress(condition[, axis, out])</td>
+<td>沿给定轴返回此数组的选定切片</td>
+</tr>
+<tr>
+<td>conj()</td>
+<td>复共轭所有元素</td>
+</tr>
+<tr>
+<td>conjugate()</td>
+<td>按元素返回复共轭</td>
+</tr>
+<tr>
+<td>copy([order])</td>
+<td>返回数组的副本</td>
+</tr>
+<tr>
+<td>cumprod([axis, dtype, out])</td>
+<td>返回元素沿给定轴的累积</td>
+</tr>
+<tr>
+<td>cumsum([axis, dtype, out])</td>
+<td>返回给定轴上元素的累加</td>
+</tr>
+<tr>
+<td>diagonal([offset, axis1, axis2])</td>
+<td>返回指定的对角线</td>
+</tr>
+<tr>
+<td>dot(b[, out])</td>
+<td>两个数组的点积</td>
+</tr>
+<tr>
+<td>dump(file)</td>
+<td>将数组的 pickle 转储到指定的文件。</td>
+</tr>
+<tr>
+<td>dumps()</td>
+<td>以字符串形式返回数组的 pickle</td>
+</tr>
+<tr>
+<td>fill(value)</td>
+<td>用标量值填充数组</td>
+</tr>
+<tr>
+<td>flatten([order])</td>
+<td>返回折叠为一维的数组的副本</td>
+</tr>
+<tr>
+<td>getfield(dtype[, offset])</td>
+<td>以特定类型返回给定数组的字段</td>
+</tr>
+<tr>
+<td>item(*args)</td>
+<td>将数组的元素复制到标准 Python 标量并返回它</td>
+</tr>
+<tr>
+<td>itemset(*args)</td>
+<td>将标量插入数组（如果可能，标量将被转换为数组的数据类型）</td>
+</tr>
+<tr>
+<td>max([axis, out, keepdims, initial, where])</td>
+<td>沿给定轴返回最大值</td>
+</tr>
+<tr>
+<td>mean([axis, dtype, out, keepdims])</td>
+<td>返回给定轴上数组元素的平均值</td>
+</tr>
+<tr>
+<td>min([axis, out, keepdims, initial, where])</td>
+<td>沿给定轴返回最小值</td>
+</tr>
+<tr>
+<td>newbyteorder([new_order])</td>
+<td>返回以不同字节顺序查看相同数据的数组</td>
+</tr>
+<tr>
+<td>nonzero()</td>
+<td>返回非零元素的索引</td>
+</tr>
+<tr>
+<td>partition(kth[, axis, kind, order])</td>
+<td>重新排列数组中的元素，使第k个位置的元素的值位于排序数组中的位置</td>
+</tr>
+<tr>
+<td>prod([axis, dtype, out, keepdims, initial, …])</td>
+<td>返回数组元素在给定轴上的乘积</td>
+</tr>
+<tr>
+<td>ptp([axis, out, keepdims])</td>
+<td>沿给定轴的峰间（最大-最小）值</td>
+</tr>
+<tr>
+<td>put(indices, values[, mode])</td>
+<td>设置 a.flat[n]=索引中所有 n 的值 [n]</td>
+</tr>
+<tr>
+<td>ravel([order])</td>
+<td>返回展平数组</td>
+</tr>
+<tr>
+<td>repeat(repeats[, axis])</td>
+<td>重复数组的元素</td>
+</tr>
+<tr>
+<td>reshape(shape[, order])</td>
+<td>返回包含具有新形状的相同数据的数组</td>
+</tr>
+<tr>
+<td>resize(new_shape[, refcheck])</td>
+<td>更改阵列的形状和大小</td>
+</tr>
+<tr>
+<td>round([decimals, out])</td>
+<td>返回 a，每个元素四舍五入到给定的小数位数</td>
+</tr>
+<tr>
+<td>searchsorted(v[, side, sorter])</td>
+<td>找到v元素应该插入a中以保持顺序的索引</td>
+</tr>
+<tr>
+<td>setfield(val, dtype[, offset])</td>
+<td>将值放入由数据类型定义的字段中的指定位置</td>
+</tr>
+<tr>
+<td>setflags([write, align, uic])</td>
+<td>分别设置数组标志 WRITEABLE、ALIGNED、（WRITEBACKIFCOPY和UPDATEIFCOPY）</td>
+</tr>
+<tr>
+<td>sort([axis, kind, order])</td>
+<td>对数组进行排序并替换</td>
+</tr>
+<tr>
+<td>squeeze([axis])</td>
+<td>从形状中删除一维条目</td>
+</tr>
+<tr>
+<td>std([axis, dtype, out, ddof, keepdims])</td>
+<td>返回数组元素沿给定轴的标准偏差</td>
+</tr>
+<tr>
+<td>sum([axis, dtype, out, keepdims, initial, where])</td>
+<td>返回给定轴上数组元素的总和</td>
+</tr>
+<tr>
+<td>swapaxes(axis1, axis2)</td>
+<td>返回交换了axis1和axis2的数组视图</td>
+</tr>
+<tr>
+<td>take(indices[, axis, out, mode])</td>
+<td>返回由给定索引处的元素组成的数组</td>
+</tr>
+<tr>
+<td>tobytes([order])</td>
+<td>构造包含数组中原始数据字节的 Python 字节</td>
+</tr>
+<tr>
+<td>tofile(fid[, sep, format])</td>
+<td>将数组作为文本或二进制（默认）写入文件</td>
+</tr>
+<tr>
+<td>tolist()</td>
+<td>以Python标量的a.ndim-levels深度嵌套列表的形式返回数组</td>
+</tr>
+<tr>
+<td>tostring([order])</td>
+<td>tobytes的兼容性别名，具有完全相同的行为</td>
+</tr>
+<tr>
+<td>trace([offset, axis1, axis2, dtype, out])</td>
+<td>返回沿数组对角线的和</td>
+</tr>
+<tr>
+<td>transpose(*axes)</td>
+<td>返回轴已转置的数组视图</td>
+</tr>
+<tr>
+<td>var([axis, dtype, out, ddof, keepdims])</td>
+<td>返回数组元素沿给定轴的方差</td>
+</tr>
+<tr>
+<td>view([dtype][, type])</td>
+<td>具有相同数据的数组的新视图</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/08/12/np%E5%92%8Cpd/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Numpy/" rel="tag">Numpy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pandas/" rel="tag">Pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/08/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            正则表达式
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/06/29/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E4%BD%9C%E4%B8%9A/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">模式识别作业</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2021
+        <i class="ri-heart-fill heart_icon"></i> John Doe
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://i.loli.net/2021/09/08/AYGWrbPNqBLw2O1.png" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
