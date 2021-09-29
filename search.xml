@@ -65,8 +65,13 @@
   <entry>
     <title>STL</title>
     <url>/2021/09/09/STL/</url>
-    <content><![CDATA[<h1 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h1><h2 id="容器结构分类"><a href="#容器结构分类" class="headerlink" title="容器结构分类"></a>容器结构分类</h2><ul>
+    <content><![CDATA[<p><img src="https://i.redd.it/mzbfh3k1o4031.jpg" alt="C++ Users be like....: ProgrammerHumor"></p>
+<span id="more"></span>
+<h1 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h1><h2 id="容器结构分类"><a href="#容器结构分类" class="headerlink" title="容器结构分类"></a>容器结构分类</h2><ul>
 <li>sequence containers<ul>
+<li><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20210914145606.png"></li>
+<li>按照放进去的顺序拜访元素</li>
+<li>包括<ul>
 <li>array<ul>
 <li>定长</li>
 </ul>
@@ -89,10 +94,85 @@
 </li>
 </ul>
 </li>
-<li>associative containers</li>
-<li>unordered containers</li>
 </ul>
-<p>其实unordered其实就是associative的一种</p>
+</li>
+<li>associative containers<ul>
+<li><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/image-20210914145907622.png" alt="image-20210914145907622"></li>
+<li>包括<ul>
+<li>红黑树（没有规定一定红黑树，但红黑树效果好所以都用它）<ul>
+<li>Set/Multiset</li>
+<li>Map/multimap</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>unordered containers<ul>
+<li><img src="C:/Users/zhj/AppData/Roaming/Typora/typora-user-images/image-20210914145956597.png" alt="image-20210914145956597"> </li>
+<li>其实unordered其实就是associative的一种</li>
+<li>包括<ul>
+<li>unordered Set/Multiset</li>
+<li>unordered Map/multimap</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="容器比较"><a href="#容器比较" class="headerlink" title="容器比较"></a>容器比较</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>Vector</th>
+<th>Deque</th>
+<th>List</th>
+<th>Set</th>
+<th>MultiSet</th>
+<th>Map</th>
+<th>MultiMap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内部结构</td>
+<td>dynamic array</td>
+<td>array of arrays</td>
+<td>double linked list</td>
+<td>binary tree</td>
+<td>binary tree</td>
+<td>binary tree</td>
+<td>binary tree</td>
+</tr>
+<tr>
+<td>随机存取</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes(key)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>搜索速度</td>
+<td>慢</td>
+<td>慢</td>
+<td>很慢</td>
+<td>快</td>
+<td>快</td>
+<td>快</td>
+<td>快</td>
+</tr>
+<tr>
+<td>快速插入移除</td>
+<td>尾部</td>
+<td>首尾</td>
+<td>任何位置</td>
+<td>–</td>
+<td>–</td>
+<td>–</td>
+<td>–</td>
+</tr>
+</tbody></table>
 ]]></content>
       <tags>
         <tag>cpp</tag>
@@ -888,5 +968,121 @@
     <url>/2019/08/04/%E8%80%81%E5%A4%8F%E7%9A%84%E5%B9%BF%E5%91%8A/</url>
     <content><![CDATA[<p>##xiahongze<br>性感老夏在线聊骚<br>加qq：3470920656</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>STL</title>
+    <url>/2021/09/21/vector/</url>
+    <content><![CDATA[<p><img src="https://lh3.googleusercontent.com/proxy/CshUzzeWL-5tORWBzUkD9LUGkraiELsGtphbXvOpbPL1dnjCaiAO-gGxOMGMAxYKvK-nYJ9L_S0zqaEMNu_PteiOj8Y1GaI2VjnfctxZ" alt="C++: A language for next generation web apps"></p>
+<span id="more"></span>
+<h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20200206204032558.png" alt="在这里插入图片描述"></p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>(); <span class="comment">// 空</span></span><br><span class="line"><span class="built_in">vector</span>( size_type num, <span class="keyword">const</span> TYPE &amp;val ); <span class="comment">// 初始化多个重复项</span></span><br><span class="line"><span class="built_in">vector</span>( <span class="keyword">const</span> vector &amp;from ); <span class="comment">// 复制容器</span></span><br><span class="line"><span class="built_in">vector</span>( input_iterator start, input_iterator end ); <span class="comment">// 迭代器初始化</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>vector可以理解成一个可以扩张的数组，每次扩张多出来一定数量的容量。这个多出多少是不确定的，不同编译器不同，VS2015是1.5，GCC是2倍，一般介于这两者之间。</p>
+<ol>
+<li>size_type capacity()</li>
+</ol>
+<ul>
+<li>返回当前容量</li>
+<li>容量并非实际有几个元素，而是最多能放几个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">capacity</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>void reserve( size_type size )</li>
+</ol>
+<ul>
+<li>设置容器可以容纳几个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">reserve</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>size_type size()</li>
+</ol>
+<ul>
+<li>返回当前元素数量</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">size</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>void resize( size_type size, TYPE val )</li>
+</ol>
+<ul>
+<li>改变容器元素数量</li>
+<li>会强制改变元素数量无论减少还是增加，都填为val</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">resize</span>(<span class="number">10</span>)</span><br><span class="line">vec.<span class="built_in">resize</span>(<span class="number">10</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>bool empty()</li>
+</ol>
+<ul>
+<li>判断vector是否为空（返回true时为空）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">empty</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>void clear()</li>
+</ol>
+<ul>
+<li>清空所有元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">clear</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li>void push_back( const TYPE &amp;val )</li>
+</ol>
+<ul>
+<li>在容器末尾添加一个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>iterator insert( iterator loc, const TYPE &amp;val )<br>void insert( iterator loc, size_type num, const TYPE &amp;val )<br>void insert( iterator loc, input_iterator start, input_iterator end )</li>
+</ol>
+<ul>
+<li>插入元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">insert</span>(vec.<span class="built_in">begin</span>(),<span class="number">7</span>); <span class="comment">//在vec的第一个位置插入7 </span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec1.<span class="built_in">begin</span>()+<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//在第二个位置加入3个6 </span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec1.<span class="built_in">begin</span>()+<span class="number">2</span>,vec1.<span class="built_in">begin</span>(),vec2.<span class="built_in">begin</span>()+<span class="number">2</span>); <span class="comment">//在vec的第三个位置加入vec1的第1到第2个 </span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>void pop_back()</li>
+</ol>
+<ul>
+<li>移除最后一个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>iterator erase( iterator loc )<br>iterator erase( iterator start, iterator end )</li>
+</ol>
+<ul>
+<li>删除指定元素</li>
+<li></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>cpp</tag>
+        <tag>STL</tag>
+      </tags>
   </entry>
 </search>
