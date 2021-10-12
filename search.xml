@@ -505,47 +505,27 @@
   <entry>
     <title>Vector</title>
     <url>/2021/09/21/vector/</url>
-    <content><![CDATA[<p><img src="https://lh3.googleusercontent.com/proxy/CshUzzeWL-5tORWBzUkD9LUGkraiELsGtphbXvOpbPL1dnjCaiAO-gGxOMGMAxYKvK-nYJ9L_S0zqaEMNu_PteiOj8Y1GaI2VjnfctxZ"></p>
+    <content><![CDATA[<p><img src="https://i.redd.it/b9pu1k341ll11.png"></p>
 <span id="more"></span>
+
 <h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
 
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20200206204032558.png" alt="在这里插入图片描述"></p>
 <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>(); <span class="comment">// 空</span></span><br><span class="line"><span class="built_in">vector</span>( size_type num, <span class="keyword">const</span> TYPE &amp;val ); <span class="comment">// 初始化多个重复项</span></span><br><span class="line"><span class="built_in">vector</span>( <span class="keyword">const</span> vector &amp;from ); <span class="comment">// 复制容器</span></span><br><span class="line"><span class="built_in">vector</span>( input_iterator start, input_iterator end ); <span class="comment">// 迭代器初始化</span></span><br></pre></td></tr></table></figure>
 
+
+
 <h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>vector可以理解成一个可以扩张的数组，每次扩张多出来一定数量的容量。这个多出多少是不确定的，不同编译器不同，VS2015是1.5，GCC是2倍，一般介于这两者之间。</p>
 <ol>
-<li>size_type capacity()</li>
+<li>```c++<br>size_type capacity() const;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 返回当前容量</span><br><span class="line">- 容量并非实际有几个元素，而是最多能放几个元素</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.capacity()</span><br></pre></td></tr></table></figure></li>
 </ol>
-<ul>
-<li>返回当前容量</li>
-<li>容量并非实际有几个元素，而是最多能放几个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">capacity</span>()</span><br></pre></td></tr></table></figure>
-
-
-
 <ol start="2">
-<li>void reserve( size_type size )</li>
+<li>```c++<br>void reserve (size_type n);<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 设置容器可以容纳几个元素</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.reserve(10)</span><br></pre></td></tr></table></figure></li>
 </ol>
-<ul>
-<li>设置容器可以容纳几个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">reserve</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
-
 <ol start="3">
-<li>size_type size()</li>
-</ol>
-<ul>
-<li>返回当前元素数量</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">size</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>void resize( size_type size, TYPE val )</li>
+<li>```c++<br>size_type size() const;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 返回当前元素数量</span><br><span class="line"></span><br><span class="line">````c++</span><br><span class="line">vec.size()</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4. ```c++</span><br><span class="line">   void resize (size_type n, value_type val = value_type());</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
 <li>改变容器元素数量</li>
@@ -556,37 +536,29 @@
 
 
 <ol start="5">
-<li>bool empty()</li>
+<li>```c++<br>bool empty() const;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 判断vector是否为空（返回true时为空）</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.empty()</span><br></pre></td></tr></table></figure></li>
 </ol>
-<ul>
-<li>判断vector是否为空（返回true时为空）</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">empty</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="6">
-<li>void clear()</li>
-</ol>
-<ul>
-<li>清空所有元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">clear</span>()</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
-<li>void push_back( const TYPE &amp;val )</li>
+<li>```c++<br>void push_back (const value_type&amp; val);<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 在容器末尾添加一个元素</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.push_back(10)</span><br></pre></td></tr></table></figure></li>
 </ol>
-<ul>
-<li>在容器末尾添加一个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
-
 <ol start="2">
-<li>iterator insert( iterator loc, const TYPE &amp;val )<br>void insert( iterator loc, size_type num, const TYPE &amp;val )<br>void insert( iterator loc, input_iterator start, input_iterator end )</li>
+<li><table>
+<thead>
+<tr>
+<th align="right">single element (1)</th>
+<th><code>iterator insert (iterator position, const value_type&amp; val); </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">fill (2)</td>
+<td><code>   void insert (iterator position, size_type n, const value_type&amp; val);</code></td>
+</tr>
+<tr>
+<td align="right">range (3)</td>
+<td><code>template &lt;class InputIterator&gt;    void insert (iterator position, InputIterator first, InputIterator last);</code></td>
+</tr>
+</tbody></table>
+</li>
 </ol>
 <ul>
 <li>插入元素</li>
@@ -596,22 +568,68 @@
 
 
 <ol start="3">
-<li>void pop_back()</li>
+<li>```c++<br>void pop_back();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 移除最后一个元素</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.pop_back()</span><br></pre></td></tr></table></figure></li>
 </ol>
-<ul>
-<li>移除最后一个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>()</span><br></pre></td></tr></table></figure>
-
-
-
 <ol start="4">
-<li>iterator erase( iterator loc )<br>iterator erase( iterator start, iterator end )</li>
+<li>```c++<br>iterator erase (iterator position);<br>iterator erase (iterator first, iterator last);<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 删除指定元素</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.erace(vec.begin+5); //删除第六个元素</span><br><span class="line">vec.erace(vec.begin,vec.begin+5); //删除第一个到第五个元素</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="5">
+<li><table>
+<thead>
+<tr>
+<th align="right">range (1)</th>
+<th><code>template &lt;class InputIterator&gt;  void assign (InputIterator first, InputIterator last); </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">fill (2)</td>
+<td><code>void assign (size_type n, const value_type&amp; val);</code></td>
+</tr>
+</tbody></table>
+</li>
 </ol>
 <ul>
-<li>删除指定元素</li>
-<li></li>
+<li>对vector中元素赋值</li>
+<li>强制执行</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">assign</span>(vec1.<span class="built_in">begin</span>(),vec1.<span class="built_in">begin</span>()+<span class="number">3</span>); <span class="comment">//把vec1中的前3个元素赋给vec</span></span><br><span class="line">vec.<span class="built_in">assign</span>(<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//vec赋值为三个6并且之前的vec内容会被清除</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>```c++<br>void clear();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 清除vector中所有元素，会析构所有元素</span><br><span class="line">- 未必会改变容器大小（capacity）</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.clear()</span><br><span class="line">vector&lt;T&gt;().swap(x);   // 清除x所有元素并把改变容器大小</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="7">
+<li>```c++<br>void swap (vector&amp; x);<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 交换两个容器中的内容</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.swap(vec1)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ol>
+<li>```c++<br>iterator begin();<br>reverse_iterator rbegin();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- begin指向当前容器起始元素的迭代器，rbegin</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.begin()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="2">
+<li>```c++<br>reference front();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 返回容器起始元素的引用</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.front()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="3">
+<li>```c++<br>iterator end();<br>reverse_iterator rend();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- end是指向容器末尾元素下一位的迭代器，rend是指向第一个元素前的迭代器</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.end()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="4">
+<li>```c++<br>reference back();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 返回容器末尾元素的引用</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.back()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="5">
+<li>```c++<br>reference at (size_type n);<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 返回指定位置的元素的引用，比方括号更加安全，会在越界时抛出一个异常</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.at(5)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="C-11"><a href="#C-11" class="headerlink" title="C++11"></a>C++11</h2><ol>
+<li>```c++<br>const_iterator cbegin() const noexcept;<br>const_iterator cend() const noexcept;<br>const_reverse_iterator crbegin() const noexcept;<br>const_reverse_iterator crend() const noexcept;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 指向一个const元素的迭代器/反向迭代器</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.cbegin();</span><br><span class="line">vec.cend();</span><br><span class="line">vec.crbegin();</span><br><span class="line">vec.crend();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="2">
+<li>```c++<br>value_type* data() noexcept;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 返回容器中数组的指针</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">int* p = myvector.data();</span><br><span class="line"></span><br><span class="line">*p = 10;</span><br><span class="line">++p;</span><br><span class="line">*p = 20;</span><br><span class="line">p[2] = 100;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="3">
+<li>```c++<br>template &lt;class… Args&gt;<br>iterator emplace (const_iterator position, Args&amp;&amp;… args);template &lt;class… Args&gt;<br>void emplace_back (Args&amp;&amp;… args);<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 更高效的insert()和push_back()，原地构造而不是构造再移动入容器</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.emplace(myvector.end(), 300);</span><br><span class="line">vec.emplace_back(100)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="4">
+<li>```c++<br>void shrink_to_fit();<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 把容器大小调整为容器的size</span><br><span class="line"></span><br><span class="line">```c++</span><br><span class="line">vec.shrink_to_fit();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p>适合在尾部插入弹出，插入删除特定位置都是$O(n)$。</p>
 ]]></content>
       <tags>
         <tag>cpp</tag>
@@ -627,8 +645,11 @@
   <entry>
     <title>匈牙利命名法</title>
     <url>/2020/09/16/%E5%8C%88%E7%89%99%E5%88%A9%E5%91%BD%E5%90%8D%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="匈牙利命名法"><a href="#匈牙利命名法" class="headerlink" title="匈牙利命名法"></a>匈牙利命名法</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>据说这种命名法是一位叫 Charles Simonyi 的匈牙利程序员发明的，后来他在微软待了几年，于是这种命名法就通过微软的各种产品和文档资料向世界传播开了。大部分程序员不管自己使用什么软件进行开发，或多或少都使用了这种命名法。这种命名法的出发点是<strong>把变量名按：属性+类型+对象描述的顺序组合起来</strong>，以使程序员作变量时对变量的类型和其它属性有直观的了解，下面是HN变量命名规范。——百度百科</p>
+    <content><![CDATA[<p><img src="https://pics.me.me/namingyour-variables-clearly-using-hungarian-notation-variable-names-in-using-34657586.png"></p>
 <span id="more"></span>
+
+<h1 id="匈牙利命名法"><a href="#匈牙利命名法" class="headerlink" title="匈牙利命名法"></a>匈牙利命名法</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>据说这种命名法是一位叫 Charles Simonyi 的匈牙利程序员发明的，后来他在微软待了几年，于是这种命名法就通过微软的各种产品和文档资料向世界传播开了。大部分程序员不管自己使用什么软件进行开发，或多或少都使用了这种命名法。这种命名法的出发点是<strong>把变量名按：属性+类型+对象描述的顺序组合起来</strong>，以使程序员作变量时对变量的类型和其它属性有直观的了解，下面是HN变量命名规范。——百度百科</p>
+<!-- more -->
 <h2 id="具体命名方法"><a href="#具体命名方法" class="headerlink" title="具体命名方法"></a>具体命名方法</h2><ul>
 <li>属性部分：<ul>
 <li><strong>g_  全局变量</strong></li>
@@ -1092,6 +1113,43 @@
       <tags>
         <tag>Python</tag>
         <tag>Regular Expression</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Data Processing</title>
+    <url>/2021/10/10/Data%20Processing/</url>
+    <content><![CDATA[<p><img src="https://imgs.xkcd.com/comics/machine_learning_2x.png"></p>
+<span id="more"></span>
+
+<h1 id="Data-Processing"><a href="#Data-Processing" class="headerlink" title="Data Processing"></a>Data Processing</h1><p>jupyter with conda:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python -m ipykernel install --user --name 环境名 --display-name “环境名”</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-import-packages"><a href="#1-import-packages" class="headerlink" title="1. import packages"></a>1. import packages</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> icecream</span><br><span class="line"><span class="keyword">import</span> tqdm <span class="keyword">as</span> tqdm</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-read-files"><a href="#2-read-files" class="headerlink" title="2. read files"></a>2. read files</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_deviceactive = pd.read_csv(<span class="string">&#x27;./2021_1_data/1_device_active.csv&#x27;</span>,sep=<span class="string">&quot;|&quot;</span>,nrows=<span class="number">100000</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-drawings"><a href="#3-drawings" class="headerlink" title="3. drawings"></a>3. drawings</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.scatter(X,Y)</span><br><span class="line">plt.plot(X,Y)</span><br><span class="line">plt.hist(df_active_info[<span class="string">&#x27;age&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-statistics"><a href="#4-statistics" class="headerlink" title="4. statistics"></a>4. statistics</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df_active_info.count() <span class="comment"># 显示各列非NAN的数量</span></span><br><span class="line">```</span><br><span class="line">device_id    <span class="number">2000000</span></span><br><span class="line">days         <span class="number">2000000</span></span><br><span class="line">daynum       <span class="number">2000000</span></span><br><span class="line">gender       <span class="number">1995726</span></span><br><span class="line">age          <span class="number">1805973</span></span><br><span class="line">device       <span class="number">2000000</span></span><br><span class="line">city         <span class="number">2000000</span></span><br><span class="line">is_vip        <span class="number">247046</span></span><br><span class="line">topics          <span class="number">8689</span></span><br><span class="line">dtype: int64</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">df_userinfo[<span class="string">&#x27;gender&#x27;</span>].value_counts() <span class="comment"># 统计各种取值的数量</span></span><br><span class="line">```</span><br><span class="line"><span class="number">0.0</span>    <span class="number">1360810</span></span><br><span class="line"><span class="number">1.0</span>     <span class="number">634916</span></span><br><span class="line">Name: gender, dtype: int64</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">df_active_info[<span class="string">&#x27;age&#x27;</span>].dropna() <span class="comment"># 去除NAN</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-some-snippets"><a href="#5-some-snippets" class="headerlink" title="5. some snippets"></a>5. some snippets</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i,days <span class="keyword">in</span> tqdm(<span class="built_in">enumerate</span>(df_deviceactive[<span class="string">&#x27;days&#x27;</span>])): <span class="comment"># 迭代</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Numpy</tag>
+        <tag>Pandas</tag>
+        <tag>Data Analysis</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
 </search>
