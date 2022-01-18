@@ -1,128 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>const</title>
-    <url>/2022/01/16/const/</url>
-    <content><![CDATA[<p><img src="https://pbs.twimg.com/media/DVN7nK3X4AA204_?format=jpg&name=large"></p>
-<span id="more"></span>
-
-<h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
-<li><p>类型检查，<code>#define</code>只是简单的字符串替换</p>
-</li>
-<li><p>定义常量，防止修改</p>
-</li>
-<li><p><code>const</code>定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是像<code>#define</code>一样给出的是立即数，所以，<code>const</code>定义的常量在程序运行过程中只有一份拷贝，而<code>#define</code>定义的常量在内存中有若干个拷贝，from <a href="https://blog.csdn.net/Eric_Jo/article/details/4138548">(6条消息) 关于C++ const 的全面总结_亿言-CSDN博客_const</a></p>
-</li>
-<li><p>编译器通常不为普通const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高</p>
-</li>
-</ul>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>const变量默认为局部变量，如果想在其他文件访问需要前面加extern</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> ext;</span><br></pre></td></tr></table></figure>
-
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">b = <span class="number">0</span>; <span class="comment">// error: assignment of read-only variable ‘b’</span></span><br><span class="line"><span class="keyword">const</span> string s = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> i,j=<span class="number">0</span> <span class="comment">// error: uninitialized const ‘i’</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><ul>
-<li><p>如果<code>const</code>位于<code>*</code>的左侧，则<code>const</code>就是用来修饰指针所指向的变量，即指针指向为常量</p>
-</li>
-<li><p>如果<code>const</code>位于<code>*</code>的右侧，<code>const</code>就是修饰指针本身，即指针本身是常量。</p>
-</li>
-</ul>
-<ol>
-<li>指向常量的指针</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * a; <span class="comment">//指向const对象的指针或者说指向常量的指针。</span></span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> * a; <span class="comment">//同上</span></span><br><span class="line"><span class="keyword">char</span>* a = <span class="string">&quot;abc&quot;</span>; <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>允许把非const对象的地址赋给指向const对象的指针</strong>。只不过无法通过这个指针修改基础对象，但可以通过其他方法修改</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *ptr;</span><br><span class="line"><span class="keyword">int</span> val = <span class="number">3</span>;</span><br><span class="line">ptr = &amp;val; <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> * <span class="keyword">const</span> a; <span class="comment">//指向类型对象的const指针。或者说常指针、const指针。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">const</span> a; <span class="comment">//指向const对象的const指针。</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>常指针</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ptr = &amp;num; <span class="comment">//指向类型对象的const指针。或者说常指针、const指针。const指针必须初始化！且const指针的值不能修改</span></span><br></pre></td></tr></table></figure>
-
-<p>要指向一个变量而不是一个常量</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ptr=&amp;num; <span class="comment">//error! const int* -&gt; int*</span></span><br></pre></td></tr></table></figure>
-
-<p>指向常量的常指针</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> ptr = &amp;p; </span><br></pre></td></tr></table></figure>
-
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
-<li><p>对于非内部数据类型的输入参数，应该将值传递的方式改为<code>const </code>引用传递，目的是提高效率。</p>
-</li>
-<li><p>对于内部数据类型的输入参数，不存在构造、析构的过程，而复制也非常快，“值传递”和“引用传递”的效率几乎相当。不要将值传递的方式改为<code>const</code> 引用传递，否则既达不到提高效率的目的，又降低了函数的可理解性。</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(A a)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> A &amp;a)</span> <span class="comment">//good</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;x)</span> <span class="comment">//bad</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ul>
-<li><p>任何不会修改数据成员的函数都应该声明为<code>const</code>类型。</p>
-</li>
-<li><p>使用<code>const</code>关键字进行说明的成员函数，称为常成员函数。<strong>只有常成员函数才有资格操作常量或常对象</strong>，没有使用<code>const</code>关键字声明的成员函数不能用来操作常对象。</p>
-</li>
-<li><p>对于类中的const成员变量必须通过初始化列表进行初始化</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> people[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Apple</span>(<span class="keyword">int</span> i); </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> apple_number;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Apple::<span class="built_in">Apple</span>(<span class="keyword">int</span> i):<span class="built_in">apple_number</span>(i)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//apple.cpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> people[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Apple</span>(<span class="keyword">int</span> i); </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> apple_number;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">take</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;apple.cpp&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">Apple::<span class="built_in">Apple</span>(<span class="keyword">int</span> i):<span class="built_in">apple_number</span>(i)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Apple::add</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Apple::add</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Apple::take</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;take func &quot;</span>&lt;&lt;num&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Apple::getCount</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//    add(); //error add方法并非const修饰，所以运行报错</span></span><br><span class="line">    <span class="keyword">return</span> apple_number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">Apple <span class="title">a</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">    cout&lt;&lt;a.<span class="built_in">getCount</span>()&lt;&lt;endl;</span><br><span class="line">    a.<span class="built_in">add</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="function"><span class="keyword">const</span> Apple <span class="title">b</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">    b.<span class="built_in">add</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译： g++ -o main main.cpp apple.cpp</span></span><br><span class="line"><span class="comment">//结果</span></span><br><span class="line">take func <span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">take func <span class="number">10</span></span><br><span class="line">take func <span class="number">100</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>unordered_map</title>
-    <url>/2021/10/12/unorderd_map/</url>
-    <content><![CDATA[<p><img src="https://i.redd.it/qkpninkp1d411.png"></p>
-<span id="more"></span>
-
-
-
-<h1 id="unordered-map-C-11"><a href="#unordered-map-C-11" class="headerlink" title="unordered_map(C++11)"></a>unordered_map(C++11)</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><table>
-<thead>
-<tr>
-<th align="right">empty (1)</th>
-<th><code>explicit unordered_map ( size_type n = /* see below */,                         const hasher&amp; hf = hasher(),                         const key_equal&amp; eql = key_equal(),                         const allocator_type&amp; alloc = allocator_type() ); explicit unordered_map ( const allocator_type&amp; alloc ); </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="right">range (2)</td>
-<td><code>template &lt;class InputIterator&gt;  unordered_map ( InputIterator first, InputIterator last,                  size_type n = /* see below */,                  const hasher&amp; hf = hasher(),                  const key_equal&amp; eql = key_equal(),                  const allocator_type&amp; alloc = allocator_type() ); </code></td>
-</tr>
-<tr>
-<td align="right">copy (3)</td>
-<td><code>unordered_map ( const unordered_map&amp; ump ); unordered_map ( const unordered_map&amp; ump, const allocator_type&amp; alloc ); </code></td>
-</tr>
-<tr>
-<td align="right">move (4)</td>
-<td><code>unordered_map ( unordered_map&amp;&amp; ump ); unordered_map ( unordered_map&amp;&amp; ump, const allocator_type&amp; alloc ); </code></td>
-</tr>
-<tr>
-<td align="right">initializer list (5)</td>
-<td><code>unordered_map ( initializer_list&lt;value_type&gt; il,                size_type n = /* see below */,                const hasher&amp; hf = hasher(),                const key_equal&amp; eql = key_equal(),                const allocator_type&amp; alloc = allocator_type() );</code></td>
-</tr>
-</tbody></table>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">unordered_map&lt;string,<span class="keyword">int</span>&gt; student = &#123;</span><br><span class="line">        &#123;<span class="string">&quot;Sherlock&quot;</span>,<span class="number">1001</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;Batman&quot;</span>,<span class="number">1002</span>&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// constructing unordered_maps</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;unordered_map&gt;</span><br><span class="line"></span><br><span class="line">typedef std::unordered_map&lt;std::string,std::string&gt; stringmap;</span><br><span class="line"></span><br><span class="line">stringmap merge (stringmap a,stringmap b) &#123;</span><br><span class="line">  stringmap temp(a); temp.insert(b.begin(),b.end()); return temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">  stringmap first;                              // empty</span><br><span class="line">  stringmap second ( &#123;&#123;&quot;apple&quot;,&quot;red&quot;&#125;,&#123;&quot;lemon&quot;,&quot;yellow&quot;&#125;&#125; );       // init list</span><br><span class="line">  stringmap third ( &#123;&#123;&quot;orange&quot;,&quot;orange&quot;&#125;,&#123;&quot;strawberry&quot;,&quot;red&quot;&#125;&#125; );  // init list</span><br><span class="line">  stringmap fourth (second);                    // copy</span><br><span class="line">  stringmap fifth (merge(third,fourth));        // move</span><br><span class="line">  stringmap sixth (fifth.begin(),fifth.end());  // range</span><br><span class="line"></span><br><span class="line">  std::cout &lt;&lt; &quot;sixth contains:&quot;;</span><br><span class="line">  for (auto&amp; x: sixth) std::cout &lt;&lt; &quot; &quot; &lt;&lt; x.first &lt;&lt; &quot;:&quot; &lt;&lt; x.second;</span><br><span class="line">  std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-      <tags>
-        <tag>cpp</tag>
-        <tag>STL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Data Processing</title>
     <url>/2021/10/10/Data%20Processing/</url>
     <content><![CDATA[<p><img src="https://imgs.xkcd.com/comics/machine_learning_2x.png"></p>
@@ -157,274 +35,6 @@
         <tag>Pandas</tag>
         <tag>Data Analysis</tag>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vector</title>
-    <url>/2021/09/21/vector/</url>
-    <content><![CDATA[<p><img src="https://i.redd.it/b9pu1k341ll11.png"></p>
-<span id="more"></span>
-
-<h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20200206204032558.png" alt="在这里插入图片描述"></p>
-<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>(); <span class="comment">// 空</span></span><br><span class="line"><span class="built_in">vector</span>( size_type num, <span class="keyword">const</span> TYPE &amp;val ); <span class="comment">// 初始化多个重复项</span></span><br><span class="line"><span class="built_in">vector</span>( <span class="keyword">const</span> vector &amp;from ); <span class="comment">// 复制容器</span></span><br><span class="line"><span class="built_in">vector</span>( input_iterator start, input_iterator end ); <span class="comment">// 迭代器初始化</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>vector可以理解成一个可以扩张的数组，每次扩张多出来一定数量的容量。这个多出多少是不确定的，不同编译器不同，VS2015是1.5，GCC是2倍，一般介于这两者之间。</p>
-<ol>
-<li>size_type capacity() const;</li>
-</ol>
-<ul>
-<li>返回当前容量</li>
-<li>容量并非实际有几个元素，而是最多能放几个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">capacity</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>void reserve (size_type n);</li>
-</ol>
-<ul>
-<li>设置容器可以容纳几个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">reserve</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>size_type size() const;</li>
-</ol>
-<ul>
-<li>返回当前元素数量</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">size</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>void resize (size_type n, value_type val = value_type());</li>
-</ol>
-<ul>
-<li>改变容器元素数量</li>
-<li>会强制改变元素数量无论减少还是增加，都填为val</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">resize</span>(<span class="number">10</span>)</span><br><span class="line">vec.<span class="built_in">resize</span>(<span class="number">10</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="5">
-<li>bool empty() const;</li>
-</ol>
-<ul>
-<li>判断vector是否为空（返回true时为空）</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">empty</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
-<li>void push_back (const value_type&amp; val);</li>
-</ol>
-<ul>
-<li>在容器末尾添加一个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li><table>
-<thead>
-<tr>
-<th align="right">single element (1)</th>
-<th><code>iterator insert (iterator position, const value_type&amp; val); </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="right">fill (2)</td>
-<td><code>   void insert (iterator position, size_type n, const value_type&amp; val);</code></td>
-</tr>
-<tr>
-<td align="right">range (3)</td>
-<td><code>template &lt;class InputIterator&gt;    void insert (iterator position, InputIterator first, InputIterator last);</code></td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<ul>
-<li>插入元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">insert</span>(vec.<span class="built_in">begin</span>(),<span class="number">7</span>); <span class="comment">//在vec的第一个位置插入7 </span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec1.<span class="built_in">begin</span>()+<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//在第二个位置加入3个6 </span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec1.<span class="built_in">begin</span>()+<span class="number">2</span>,vec1.<span class="built_in">begin</span>(),vec2.<span class="built_in">begin</span>()+<span class="number">2</span>); <span class="comment">//在vec的第三个位置加入vec1的第1到第2个 </span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>void pop_back();</li>
-</ol>
-<ul>
-<li>移除最后一个元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>iterator erase (iterator position);<br>iterator erase (iterator first, iterator last);</li>
-</ol>
-<ul>
-<li>删除指定元素</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">erace</span>(vec.begin+<span class="number">5</span>); <span class="comment">//删除第六个元素</span></span><br><span class="line">vec.<span class="built_in">erace</span>(vec.begin,vec.begin+<span class="number">5</span>); <span class="comment">//删除第一个到第五个元素</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="5">
-<li><table>
-<thead>
-<tr>
-<th align="right">range (1)</th>
-<th><code>template &lt;class InputIterator&gt;  void assign (InputIterator first, InputIterator last); </code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="right">fill (2)</td>
-<td><code>void assign (size_type n, const value_type&amp; val);</code></td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<ul>
-<li>对vector中元素赋值</li>
-<li>强制执行</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">assign</span>(vec1.<span class="built_in">begin</span>(),vec1.<span class="built_in">begin</span>()+<span class="number">3</span>); <span class="comment">//把vec1中的前3个元素赋给vec</span></span><br><span class="line">vec.<span class="built_in">assign</span>(<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//vec赋值为三个6并且之前的vec内容会被清除</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="6">
-<li>void clear();</li>
-</ol>
-<ul>
-<li>清除vector中所有元素，会析构所有元素</li>
-<li>未必会改变容器大小（capacity）</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">clear</span>()</span><br><span class="line">vector&lt;T&gt;().<span class="built_in">swap</span>(x);   <span class="comment">// 清除x所有元素并把改变容器大小</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="7">
-<li>void swap (vector&amp; x);</li>
-</ol>
-<ul>
-<li>交换两个容器中的内容</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">swap</span>(vec1)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ol>
-<li>iterator begin();<br>reverse_iterator rbegin();</li>
-</ol>
-<ul>
-<li>begin指向当前容器起始元素的迭代器，rbegin</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">begin</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-
-<ol start="2">
-<li>reference front();</li>
-</ol>
-<ul>
-<li>返回容器起始元素的引用</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">front</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>iterator end();<br>reverse_iterator rend();</li>
-</ol>
-<ul>
-<li>end是指向容器末尾元素下一位的迭代器，rend是指向第一个元素前的迭代器</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">end</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>reference back();</li>
-</ol>
-<ul>
-<li>返回容器末尾元素的引用</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">back</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="5">
-<li>reference at (size_type n);</li>
-</ol>
-<ul>
-<li>返回指定位置的元素的引用，比方括号更加安全，会在越界时抛出一个异常</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">at</span>(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="C-11"><a href="#C-11" class="headerlink" title="C++11"></a>C++11</h2><ol>
-<li>const_iterator cbegin() const noexcept;<br>const_iterator cend() const noexcept;<br>const_reverse_iterator crbegin() const noexcept;<br>const_reverse_iterator crend() const noexcept;</li>
-</ol>
-<ul>
-<li>指向一个const元素的迭代器/反向迭代器</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">cbegin</span>();</span><br><span class="line">vec.<span class="built_in">cend</span>();</span><br><span class="line">vec.<span class="built_in">crbegin</span>();</span><br><span class="line">vec.<span class="built_in">crend</span>();</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>value_type* data() noexcept;</li>
-</ol>
-<ul>
-<li>返回容器中数组的指针</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>* p = myvector.<span class="built_in">data</span>();</span><br><span class="line"></span><br><span class="line">*p = <span class="number">10</span>;</span><br><span class="line">++p;</span><br><span class="line">*p = <span class="number">20</span>;</span><br><span class="line">p[<span class="number">2</span>] = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li><p>template &lt;class… Args&gt;<br>iterator emplace (const_iterator position, Args&amp;&amp;… args);</p>
-<p>template &lt;class… Args&gt;<br>void emplace_back (Args&amp;&amp;… args);</p>
-</li>
-</ol>
-<ul>
-<li>更高效的insert()和push_back()，原地构造而不是构造再移动入容器</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">emplace</span>(myvector.<span class="built_in">end</span>(), <span class="number">300</span>);</span><br><span class="line">vec.<span class="built_in">emplace_back</span>(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>void shrink_to_fit();</li>
-</ol>
-<ul>
-<li>把容器大小调整为容器的size</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">shrink_to_fit</span>();</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p>适合在尾部插入弹出，插入删除特定位置都是$O(n)$。</p>
-]]></content>
-      <tags>
-        <tag>cpp</tag>
-        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
@@ -545,91 +155,110 @@
       </tags>
   </entry>
   <entry>
-    <title>正则表达式</title>
-    <url>/2021/08/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<p><img src="data:image/jpeg;base64,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"></p>
+    <title>Docker Installation and Usage</title>
+    <url>/2021/06/27/Docker%20Installation%20and%20Usage/</url>
+    <content><![CDATA[<p><img src="https://miro.medium.com/max/680/1*NXZYK4_f0lFJ8gpgcE5tHA.png"></p>
 <span id="more"></span>
 
-<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="python中使用"><a href="#python中使用" class="headerlink" title="python中使用"></a>python中使用</h2><ul>
-<li><p><code>re.search</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
-<p>扫描整个 <em>字符串</em> 找到匹配样式的第一个位置，并返回一个相应的 [匹配对象]。如果没有匹配，就返回一个 <code>None</code> ； 注意这和找到一个零长度匹配是不同的。</p>
-</li>
-<li><p><code>re.match</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
-<p>如果 <em>string</em> 开始的0或者多个字符匹配到了正则表达式样式，就返回一个相应的 [匹配对象]。 如果没有匹配，就返回 <code>None</code> ；注意它跟零长度匹配是不同的</p>
-</li>
-<li><p><code>fullmatch</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
+<h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><h2 id="手动卸载旧版本"><a href="#手动卸载旧版本" class="headerlink" title="手动卸载旧版本"></a>手动卸载旧版本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
+
+<h2 id="一键安装"><a href="#一键安装" class="headerlink" title="一键安装"></a>一键安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br></pre></td></tr></table></figure>
 <!-- more -->
-<p>如果整个 <em>string</em> 匹配到正则表达式样式，就返回一个相应的 [匹配对象] 。 否则就返回一个 <code>None</code> ；注意这跟零长度匹配是不同的。</p>
-</li>
-<li><p><code>split</code>(<em>pattern</em>, <em>string</em>, <em>maxsplit=0</em>, <em>flags=0</em>)</p>
+<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg-agent \</span><br><span class="line">    software-properties-common</span><br><span class="line">curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">&quot;deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/ \</span></span><br><span class="line"><span class="string">  <span class="subst">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">  stable&quot;</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试安装成功"><a href="#测试安装成功" class="headerlink" title="测试安装成功"></a>测试安装成功</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+<p>如果没有成功就再试一次，可能第一次不成功</p>
+<h1 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h1><h2 id="创建或修改-etc-docker-daemon-json-文件"><a href="#创建或修改-etc-docker-daemon-json-文件" class="headerlink" title="创建或修改 /etc/docker/daemon.json 文件"></a>创建或修改 /etc/docker/daemon.json 文件</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="在上述文件写入"><a href="#在上述文件写入" class="headerlink" title="在上述文件写入"></a>在上述文件写入</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://registry.docker-cn.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>第一个参数：正则表达式</p>
-</li>
-<li><p>第二个参数：要匹配查找的原始字符串；</p>
-</li>
-<li><p>第三个参数：可选参数，表示最大的拆分次数，默认为0，表示全部分割；</p>
-</li>
-<li><p>第四个参数：可选参数，标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等；</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">re.split(<span class="string">&#x27;\.&#x27;</span>, <span class="string">&#x27;www.csdn.com&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;www&#x27;, &#x27;csdn&#x27;, &#x27;com&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<p>  需要特别注意的是，这个方法并不是完全匹配。它仅仅决定在字符串开始的位置是否匹配。所以当pattern结束时若还有剩余字符，仍然视为成功。想要完全匹配，可以在表达式末尾加上边界匹配符’$’</p>
-<p>  例如：</p>
-  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(‘z’, ‘p.python.p’)</span><br><span class="line"><span class="comment"># [&#x27;p.python.p&#x27;]； 失败返回原string列表</span></span><br><span class="line">    </span><br><span class="line">re.split(‘p’, ‘p.python.p’)</span><br><span class="line"><span class="comment"># [&#x27;&#x27;, &#x27;.&#x27;, &#x27;ython.&#x27;, &#x27;&#x27;]  成功返回新列表</span></span><br></pre></td></tr></table></figure></li>
+<li>主义不要有多余空格，缩进用Tab</li>
+<li>以上时中国docker官方镜像，也可以试试别的源<ul>
+<li>网易<br><a href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></li>
+<li>ustc<br><a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></li>
+<li>中国科技大学<br><a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></li>
 </ul>
 </li>
-<li><p><code>re.findall</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
-</li>
 </ul>
-<p>对 <em>string</em> 返回一个不重复的 <em>pattern</em> 的匹配列表， <em>string</em> 从左到右进行扫描，匹配按找到的顺序返回。如果样式里存在一到多个组，就返回一个组合列表；就是一个元组的列表（如果样式里有超过一个组合的话）。空匹配也会包含在结果里。</p>
-<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><ul>
-<li><p><code>[]</code></p>
-<p>匹配[…]中的所有字符</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;[a-z]&#x27;</span>,<span class="string">&#x27;I have a dream.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;h&#x27;, &#x27;a&#x27;, &#x27;v&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;d&#x27;, &#x27;r&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;m&#x27;]</span></span><br><span class="line">re.findall(<span class="string">&#x27;[A-z]&#x27;</span>,<span class="string">&#x27;I have a dream.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;I&#x27;, &#x27;h&#x27;, &#x27;a&#x27;, &#x27;v&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;d&#x27;, &#x27;r&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;m&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 特殊内容</span></span><br><span class="line"><span class="comment"># ^再括号里指非</span></span><br><span class="line">re.findall(<span class="string">&#x27;[^A-z]&#x27;</span>,<span class="string">&#x27;I have a dream.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27; &#x27;, &#x27; &#x27;, &#x27; &#x27;, &#x27;.&#x27;]</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p><code>$</code></p>
-<p> 只匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 <code>$</code> 也匹配 ‘\n’ 或 ‘\r’。要匹配 <code>$</code> 字符本身，请使用 `$`。</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;the$&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;the&#x27;]</span></span><br><span class="line"></span><br><span class="line">re.findall(<span class="string">&#x27;The$&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure></li>
-<li><p><code>^</code></p>
-<p>只匹配结束位置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;^The&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;The&#x27;]</span></span><br><span class="line"></span><br><span class="line">re.findall(<span class="string">&#x27;^he&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure></li>
-<li><p><code>*</code></p>
-<p>匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo*h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooh! oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;oh!&#x27;, &#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooooh!&#x27;]</span></span><br></pre></td></tr></table></figure></li>
-<li><p><code>?</code></p>
-<p>匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;colou?r&#x27;</span>,<span class="string">&#x27;color colour colouur&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;color&#x27;, &#x27;colour&#x27;]</span></span><br></pre></td></tr></table></figure></li>
-<li><p><code>+</code></p>
-<p> 匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo+h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooh! oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>.</code></p>
-<p> 匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;beg.n&#x27;</span>,<span class="string">&#x27;begin begun begun beg3n begn&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;begin&#x27;, &#x27;begun&#x27;, &#x27;begun&#x27;, &#x27;beg3n&#x27;]</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>&#123;n&#125;</code></p>
-<p> 匹配前面的子表达式n次。</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo&#123;2&#125;h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;oooh!&#x27;, &#x27;oooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker.service</span><br></pre></td></tr></table></figure>
 
-<p> <code>&#123;n,&#125;</code></p>
-<p> 匹配前面的子表达式至少n次且最多匹配 m 次。</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo&#123;1,&#125;h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
 
-<p> <code>&#123;n,m&#125;</code></p>
-<p> 匹配前面的子表达式至少n次。</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo&#123;1,3&#125;h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;ooooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
 
-</li>
+<h1 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h1><h2 id="镜像列表"><a href="#镜像列表" class="headerlink" title="镜像列表"></a>镜像列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -it ubuntu /bin/bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>-i</strong>: 交互式操作。</li>
+<li><strong>-t</strong>: 终端。</li>
 </ul>
-<h2 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h2><ul>
-<li><code>\s</code> 空白符 \S 非空白符</li>
-<li><code>\w</code> 字母，数字，下划线 等于[A-Za-z0-9]</li>
-<li><code>\n</code> 换行符</li>
+<h2 id="容器列表"><a href="#容器列表" class="headerlink" title="容器列表"></a>容器列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<h2 id="按Id启动容器"><a href="#按Id启动容器" class="headerlink" title="按Id启动容器"></a>按Id启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker start b750bbbcfd88</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> 1e560fca3906</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以使用attach但是退出会使容器停止</li>
 </ul>
-<h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="数字相关"><a href="#数字相关" class="headerlink" title="数字相关"></a>数字相关</h3><p>1 数字：^[0-9]<em>$<br>2 n位的数字：^\d{n}$<br>3 至少n位的数字：^\d{n,}$<br>4 m-n位的数字：^\d{m,n}$<br>5 零和非零开头的数字：^(0|[1-9][0-9]</em>)$<br>6 非零开头的最多带两位小数的数字：^([1-9][0-9]<em>)+(.[0-9]{1,2})?$<br>7 带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$<br>8 正数、负数、和小数：^(-|+)?\d+(.\d+)?$<br>9 有两位小数的正实数：^[0-9]+(.[0-9]{2})?$<br>10 有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$<br>11 非零的正整数：^[1-9]\d</em>$ 或 ^([1-9][0-9]<em>){1,3}$ 或 ^+?[1-9][0-9]</em>$<br>12 非零的负整数：^-[1-9][]0-9”<em>$ 或 ^-[1-9]\d</em>$<br>13 非负整数：^\d+$ 或 ^[1-9]\d*|0$<br>14 非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$<br>15 非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d<em>.\d</em>|0.\d*[1-9]\d*|0?.0+|0$<br>16 非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*))|0?.0+|0$<br>17 正浮点数：^[1-9]\d<em>.\d</em>|0.\d*[1-9]\d*$ 或 ^(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]<em>.[0-9]+)|([0-9]</em>[1-9][0-9]</em>))$<br>18 负浮点数：^-([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*)$ 或 ^(-(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]<em>.[0-9]+)|([0-9]</em>[1-9][0-9]</em>)))$</p>
-<h3 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h3><p>1 汉字：^[\u4e00-\u9fa5]{0,}$<br>2 英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$<br>3 长度为3-20的所有字符：^.{3,20}$<br>4 由26个英文字母组成的字符串：^[A-Za-z]+$<br>5 由26个大写英文字母组成的字符串：^[A-Z]+$<br>6 由26个小写英文字母组成的字符串：^[a-z]+$<br>7 由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$<br>8 由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$<br>9 中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$<br>10 中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$<br>11 可以输入含有^%&amp;’,;=?$&quot;等字符：[^%&amp;’,;=?$\x22]+<br>12 禁止输入含有<del>的字符：[^</del>\x22]+</p>
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker rm -f 1e560fca3906</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.runoob.com/docker/docker-container-usage.html">https://www.runoob.com/docker/docker-container-usage.html</a></p>
 ]]></content>
       <tags>
-        <tag>Python</tag>
-        <tag>Regular Expression</tag>
+        <tag>Docker</tag>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>unordered_map</title>
+    <url>/2021/10/12/unorderd_map/</url>
+    <content><![CDATA[<p><img src="https://i.redd.it/qkpninkp1d411.png"></p>
+<span id="more"></span>
+
+
+
+<h1 id="unordered-map-C-11"><a href="#unordered-map-C-11" class="headerlink" title="unordered_map(C++11)"></a>unordered_map(C++11)</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><table>
+<thead>
+<tr>
+<th align="right">empty (1)</th>
+<th><code>explicit unordered_map ( size_type n = /* see below */,                         const hasher&amp; hf = hasher(),                         const key_equal&amp; eql = key_equal(),                         const allocator_type&amp; alloc = allocator_type() ); explicit unordered_map ( const allocator_type&amp; alloc ); </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">range (2)</td>
+<td><code>template &lt;class InputIterator&gt;  unordered_map ( InputIterator first, InputIterator last,                  size_type n = /* see below */,                  const hasher&amp; hf = hasher(),                  const key_equal&amp; eql = key_equal(),                  const allocator_type&amp; alloc = allocator_type() ); </code></td>
+</tr>
+<tr>
+<td align="right">copy (3)</td>
+<td><code>unordered_map ( const unordered_map&amp; ump ); unordered_map ( const unordered_map&amp; ump, const allocator_type&amp; alloc ); </code></td>
+</tr>
+<tr>
+<td align="right">move (4)</td>
+<td><code>unordered_map ( unordered_map&amp;&amp; ump ); unordered_map ( unordered_map&amp;&amp; ump, const allocator_type&amp; alloc ); </code></td>
+</tr>
+<tr>
+<td align="right">initializer list (5)</td>
+<td><code>unordered_map ( initializer_list&lt;value_type&gt; il,                size_type n = /* see below */,                const hasher&amp; hf = hasher(),                const key_equal&amp; eql = key_equal(),                const allocator_type&amp; alloc = allocator_type() );</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">unordered_map&lt;string,<span class="keyword">int</span>&gt; student = &#123;</span><br><span class="line">        &#123;<span class="string">&quot;Sherlock&quot;</span>,<span class="number">1001</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;Batman&quot;</span>,<span class="number">1002</span>&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// constructing unordered_maps</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;unordered_map&gt;</span><br><span class="line"></span><br><span class="line">typedef std::unordered_map&lt;std::string,std::string&gt; stringmap;</span><br><span class="line"></span><br><span class="line">stringmap merge (stringmap a,stringmap b) &#123;</span><br><span class="line">  stringmap temp(a); temp.insert(b.begin(),b.end()); return temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">  stringmap first;                              // empty</span><br><span class="line">  stringmap second ( &#123;&#123;&quot;apple&quot;,&quot;red&quot;&#125;,&#123;&quot;lemon&quot;,&quot;yellow&quot;&#125;&#125; );       // init list</span><br><span class="line">  stringmap third ( &#123;&#123;&quot;orange&quot;,&quot;orange&quot;&#125;,&#123;&quot;strawberry&quot;,&quot;red&quot;&#125;&#125; );  // init list</span><br><span class="line">  stringmap fourth (second);                    // copy</span><br><span class="line">  stringmap fifth (merge(third,fourth));        // move</span><br><span class="line">  stringmap sixth (fifth.begin(),fifth.end());  // range</span><br><span class="line"></span><br><span class="line">  std::cout &lt;&lt; &quot;sixth contains:&quot;;</span><br><span class="line">  for (auto&amp; x: sixth) std::cout &lt;&lt; &quot; &quot; &lt;&lt; x.first &lt;&lt; &quot;:&quot; &lt;&lt; x.second;</span><br><span class="line">  std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <tags>
+        <tag>cpp</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
@@ -959,91 +588,278 @@
       </tags>
   </entry>
   <entry>
-    <title>模式识别作业</title>
-    <url>/2021/06/29/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E4%BD%9C%E4%B8%9A/</url>
-    <content><![CDATA[<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="距离表达式"><a href="#距离表达式" class="headerlink" title="距离表达式"></a>距离表达式</h2><h3 id="L2距离"><a href="#L2距离" class="headerlink" title="L2距离"></a>L2距离</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Euclidean</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.sqrt(np.<span class="built_in">sum</span>(np.square(a-b)))</span><br></pre></td></tr></table></figure>
+    <title>Vector</title>
+    <url>/2021/09/21/vector/</url>
+    <content><![CDATA[<p><img src="https://i.redd.it/b9pu1k341ll11.png"></p>
+<span id="more"></span>
 
-<h3 id="曼哈顿距离"><a href="#曼哈顿距离" class="headerlink" title="曼哈顿距离"></a>曼哈顿距离</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Manhattan</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(a-b))</span><br></pre></td></tr></table></figure>
+<h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1><h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-<h3 id="柴比雪夫距离"><a href="#柴比雪夫距离" class="headerlink" title="柴比雪夫距离"></a>柴比雪夫距离</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Chebyshev</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">max</span>(np.<span class="built_in">abs</span>(a-b))</span><br></pre></td></tr></table></figure>
 
-<h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><h2 id="CSV操作"><a href="#CSV操作" class="headerlink" title="CSV操作"></a>CSV操作</h2><h3 id="读csv"><a href="#读csv" class="headerlink" title="读csv"></a>读csv</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data = pd.read_csv( my_file.csv )</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, sep=<span class="string">&#x27;:&#x27;</span>,header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">labels = [<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;attendance&#x27;</span>, <span class="string">&#x27;hw&#x27;</span>, <span class="string">&#x27;test1&#x27;</span>, <span class="string">&#x27;project1&#x27;</span>, <span class="string">&#x27;test2&#x27;</span>, <span class="string">&#x27;project2&#x27;</span>, <span class="string">&#x27;final&#x27;</span>]</span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, names=labels)</span><br></pre></td></tr></table></figure>
 
-<p>sep 分隔符</p>
-<p>header 用哪一行作为列标签 可以取None</p>
-<p>names 指定列标签</p>
-<h3 id="写csv"><a href="#写csv" class="headerlink" title="写csv"></a>写csv</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">df_powerplant.to_csv(<span class="string">&#x27;powerplant_data_edited.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><img src="https://gitee.com/zhuhaojia2001/opensourcemap_imgs/raw/master/img/20200206204032558.png" alt="在这里插入图片描述"></p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>(); <span class="comment">// 空</span></span><br><span class="line"><span class="built_in">vector</span>( size_type num, <span class="keyword">const</span> TYPE &amp;val ); <span class="comment">// 初始化多个重复项</span></span><br><span class="line"><span class="built_in">vector</span>( <span class="keyword">const</span> vector &amp;from ); <span class="comment">// 复制容器</span></span><br><span class="line"><span class="built_in">vector</span>( input_iterator start, input_iterator end ); <span class="comment">// 迭代器初始化</span></span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>暂时搁置</p>
+
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>vector可以理解成一个可以扩张的数组，每次扩张多出来一定数量的容量。这个多出多少是不确定的，不同编译器不同，VS2015是1.5，GCC是2倍，一般介于这两者之间。</p>
+<ol>
+<li>size_type capacity() const;</li>
+</ol>
+<ul>
+<li>返回当前容量</li>
+<li>容量并非实际有几个元素，而是最多能放几个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">capacity</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>void reserve (size_type n);</li>
+</ol>
+<ul>
+<li>设置容器可以容纳几个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">reserve</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>size_type size() const;</li>
+</ol>
+<ul>
+<li>返回当前元素数量</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">size</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>void resize (size_type n, value_type val = value_type());</li>
+</ol>
+<ul>
+<li>改变容器元素数量</li>
+<li>会强制改变元素数量无论减少还是增加，都填为val</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">resize</span>(<span class="number">10</span>)</span><br><span class="line">vec.<span class="built_in">resize</span>(<span class="number">10</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>bool empty() const;</li>
+</ol>
+<ul>
+<li>判断vector是否为空（返回true时为空）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">empty</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ol>
+<li>void push_back (const value_type&amp; val);</li>
+</ol>
+<ul>
+<li>在容器末尾添加一个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><table>
+<thead>
+<tr>
+<th align="right">single element (1)</th>
+<th><code>iterator insert (iterator position, const value_type&amp; val); </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">fill (2)</td>
+<td><code>   void insert (iterator position, size_type n, const value_type&amp; val);</code></td>
+</tr>
+<tr>
+<td align="right">range (3)</td>
+<td><code>template &lt;class InputIterator&gt;    void insert (iterator position, InputIterator first, InputIterator last);</code></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ul>
+<li>插入元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">insert</span>(vec.<span class="built_in">begin</span>(),<span class="number">7</span>); <span class="comment">//在vec的第一个位置插入7 </span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec1.<span class="built_in">begin</span>()+<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//在第二个位置加入3个6 </span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec1.<span class="built_in">begin</span>()+<span class="number">2</span>,vec1.<span class="built_in">begin</span>(),vec2.<span class="built_in">begin</span>()+<span class="number">2</span>); <span class="comment">//在vec的第三个位置加入vec1的第1到第2个 </span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>void pop_back();</li>
+</ol>
+<ul>
+<li>移除最后一个元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>iterator erase (iterator position);<br>iterator erase (iterator first, iterator last);</li>
+</ol>
+<ul>
+<li>删除指定元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">erace</span>(vec.begin+<span class="number">5</span>); <span class="comment">//删除第六个元素</span></span><br><span class="line">vec.<span class="built_in">erace</span>(vec.begin,vec.begin+<span class="number">5</span>); <span class="comment">//删除第一个到第五个元素</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li><table>
+<thead>
+<tr>
+<th align="right">range (1)</th>
+<th><code>template &lt;class InputIterator&gt;  void assign (InputIterator first, InputIterator last); </code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">fill (2)</td>
+<td><code>void assign (size_type n, const value_type&amp; val);</code></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ul>
+<li>对vector中元素赋值</li>
+<li>强制执行</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">assign</span>(vec1.<span class="built_in">begin</span>(),vec1.<span class="built_in">begin</span>()+<span class="number">3</span>); <span class="comment">//把vec1中的前3个元素赋给vec</span></span><br><span class="line">vec.<span class="built_in">assign</span>(<span class="number">3</span>,<span class="number">6</span>); <span class="comment">//vec赋值为三个6并且之前的vec内容会被清除</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>void clear();</li>
+</ol>
+<ul>
+<li>清除vector中所有元素，会析构所有元素</li>
+<li>未必会改变容器大小（capacity）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">clear</span>()</span><br><span class="line">vector&lt;T&gt;().<span class="built_in">swap</span>(x);   <span class="comment">// 清除x所有元素并把改变容器大小</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="7">
+<li>void swap (vector&amp; x);</li>
+</ol>
+<ul>
+<li>交换两个容器中的内容</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">swap</span>(vec1)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><ol>
+<li>iterator begin();<br>reverse_iterator rbegin();</li>
+</ol>
+<ul>
+<li>begin指向当前容器起始元素的迭代器，rbegin</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">begin</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+
+<ol start="2">
+<li>reference front();</li>
+</ol>
+<ul>
+<li>返回容器起始元素的引用</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">front</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>iterator end();<br>reverse_iterator rend();</li>
+</ol>
+<ul>
+<li>end是指向容器末尾元素下一位的迭代器，rend是指向第一个元素前的迭代器</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">end</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>reference back();</li>
+</ol>
+<ul>
+<li>返回容器末尾元素的引用</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">back</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>reference at (size_type n);</li>
+</ol>
+<ul>
+<li>返回指定位置的元素的引用，比方括号更加安全，会在越界时抛出一个异常</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">at</span>(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="C-11"><a href="#C-11" class="headerlink" title="C++11"></a>C++11</h2><ol>
+<li>const_iterator cbegin() const noexcept;<br>const_iterator cend() const noexcept;<br>const_reverse_iterator crbegin() const noexcept;<br>const_reverse_iterator crend() const noexcept;</li>
+</ol>
+<ul>
+<li>指向一个const元素的迭代器/反向迭代器</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">cbegin</span>();</span><br><span class="line">vec.<span class="built_in">cend</span>();</span><br><span class="line">vec.<span class="built_in">crbegin</span>();</span><br><span class="line">vec.<span class="built_in">crend</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>value_type* data() noexcept;</li>
+</ol>
+<ul>
+<li>返回容器中数组的指针</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>* p = myvector.<span class="built_in">data</span>();</span><br><span class="line"></span><br><span class="line">*p = <span class="number">10</span>;</span><br><span class="line">++p;</span><br><span class="line">*p = <span class="number">20</span>;</span><br><span class="line">p[<span class="number">2</span>] = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li><p>template &lt;class… Args&gt;<br>iterator emplace (const_iterator position, Args&amp;&amp;… args);</p>
+<p>template &lt;class… Args&gt;<br>void emplace_back (Args&amp;&amp;… args);</p>
+</li>
+</ol>
+<ul>
+<li>更高效的insert()和push_back()，原地构造而不是构造再移动入容器</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">emplace</span>(myvector.<span class="built_in">end</span>(), <span class="number">300</span>);</span><br><span class="line">vec.<span class="built_in">emplace_back</span>(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>void shrink_to_fit();</li>
+</ol>
+<ul>
+<li>把容器大小调整为容器的size</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">shrink_to_fit</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p>适合在尾部插入弹出，插入删除特定位置都是$O(n)$。</p>
 ]]></content>
       <tags>
-        <tag>Numpy</tag>
-        <tag>Pandas</tag>
-        <tag>Data Analysis</tag>
-        <tag>Python</tag>
-        <tag>Pattern Recognition</tag>
-        <tag>Matplotlib</tag>
+        <tag>cpp</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
-    <title>Docker Installation and Usage</title>
-    <url>/2021/06/27/Docker%20Installation%20and%20Usage/</url>
-    <content><![CDATA[<p><img src="https://miro.medium.com/max/680/1*NXZYK4_f0lFJ8gpgcE5tHA.png"></p>
-<span id="more"></span>
-
-<h1 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h1><h2 id="手动卸载旧版本"><a href="#手动卸载旧版本" class="headerlink" title="手动卸载旧版本"></a>手动卸载旧版本</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
-
-<h2 id="一键安装"><a href="#一键安装" class="headerlink" title="一键安装"></a>一键安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br></pre></td></tr></table></figure>
-<!-- more -->
-<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg-agent \</span><br><span class="line">    software-properties-common</span><br><span class="line">curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">&quot;deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/ \</span></span><br><span class="line"><span class="string">  <span class="subst">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">  stable&quot;</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试安装成功"><a href="#测试安装成功" class="headerlink" title="测试安装成功"></a>测试安装成功</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
-<p>如果没有成功就再试一次，可能第一次不成功</p>
-<h1 id="更换源"><a href="#更换源" class="headerlink" title="更换源"></a>更换源</h1><h2 id="创建或修改-etc-docker-daemon-json-文件"><a href="#创建或修改-etc-docker-daemon-json-文件" class="headerlink" title="创建或修改 /etc/docker/daemon.json 文件"></a>创建或修改 /etc/docker/daemon.json 文件</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-
-<h2 id="在上述文件写入"><a href="#在上述文件写入" class="headerlink" title="在上述文件写入"></a>在上述文件写入</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://registry.docker-cn.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主义不要有多余空格，缩进用Tab</li>
-<li>以上时中国docker官方镜像，也可以试试别的源<ul>
-<li>网易<br><a href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></li>
-<li>ustc<br><a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></li>
-<li>中国科技大学<br><a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker.service</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h1><h2 id="镜像列表"><a href="#镜像列表" class="headerlink" title="镜像列表"></a>镜像列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
-<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
-
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run -it ubuntu /bin/bash</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>-i</strong>: 交互式操作。</li>
-<li><strong>-t</strong>: 终端。</li>
-</ul>
-<h2 id="容器列表"><a href="#容器列表" class="headerlink" title="容器列表"></a>容器列表</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-
-<h2 id="按Id启动容器"><a href="#按Id启动容器" class="headerlink" title="按Id启动容器"></a>按Id启动容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker start b750bbbcfd88</span><br></pre></td></tr></table></figure>
-
-<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> 1e560fca3906</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>也可以使用attach但是退出会使容器停止</li>
-</ul>
-<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker rm -f 1e560fca3906</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.runoob.com/docker/docker-container-usage.html">https://www.runoob.com/docker/docker-container-usage.html</a></p>
+    <title>yilia</title>
+    <url>/2019/08/04/yilia/</url>
+    <content><![CDATA[<p>yilia里的avatar标记在原本json中已经存在</p>
 ]]></content>
-      <tags>
-        <tag>Docker</tag>
-        <tag>notes</tag>
-      </tags>
   </entry>
   <entry>
     <title>匈牙利命名法</title>
@@ -1103,109 +919,31 @@
       </tags>
   </entry>
   <entry>
-    <title>线性表</title>
-    <url>/2020/06/11/%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><hr>
-<h2 id="线性表1"><a href="#线性表1" class="headerlink" title="线性表1"></a>线性表1</h2><ul>
-<li>线性表的定义<ul>
-<li>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表<ul>
-<li>序列：先来后到</li>
-<li>第一个无前驱，最后一个无后继<span id="more"></span></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+    <title>模式识别作业</title>
+    <url>/2021/06/29/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E4%BD%9C%E4%B8%9A/</url>
+    <content><![CDATA[<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="距离表达式"><a href="#距离表达式" class="headerlink" title="距离表达式"></a>距离表达式</h2><h3 id="L2距离"><a href="#L2距离" class="headerlink" title="L2距离"></a>L2距离</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Euclidean</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.sqrt(np.<span class="built_in">sum</span>(np.square(a-b)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="曼哈顿距离"><a href="#曼哈顿距离" class="headerlink" title="曼哈顿距离"></a>曼哈顿距离</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Manhattan</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(np.<span class="built_in">abs</span>(a-b))</span><br></pre></td></tr></table></figure>
+
+<h3 id="柴比雪夫距离"><a href="#柴比雪夫距离" class="headerlink" title="柴比雪夫距离"></a>柴比雪夫距离</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Chebyshev</span>(<span class="params">a,b</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">max</span>(np.<span class="built_in">abs</span>(a-b))</span><br></pre></td></tr></table></figure>
+
+<h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><h2 id="CSV操作"><a href="#CSV操作" class="headerlink" title="CSV操作"></a>CSV操作</h2><h3 id="读csv"><a href="#读csv" class="headerlink" title="读csv"></a>读csv</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data = pd.read_csv( my_file.csv )</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, sep=<span class="string">&#x27;:&#x27;</span>,header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">labels = [<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;attendance&#x27;</span>, <span class="string">&#x27;hw&#x27;</span>, <span class="string">&#x27;test1&#x27;</span>, <span class="string">&#x27;project1&#x27;</span>, <span class="string">&#x27;test2&#x27;</span>, <span class="string">&#x27;project2&#x27;</span>, <span class="string">&#x27;final&#x27;</span>]</span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;student_scores.csv&#x27;</span>, names=labels)</span><br></pre></td></tr></table></figure>
+
+<p>sep 分隔符</p>
+<p>header 用哪一行作为列标签 可以取None</p>
+<p>names 指定列标签</p>
+<h3 id="写csv"><a href="#写csv" class="headerlink" title="写csv"></a>写csv</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">df_powerplant.to_csv(<span class="string">&#x27;powerplant_data_edited.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
 <hr>
-<ul>
-<li><p>抽象数据类型</p>
-<ul>
-<li>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</li>
-</ul>
-</li>
-<li><p>C语言中数据类型可分为两类</p>
-<ul>
-<li>原子类型</li>
-</ul>
-</li>
-<li><p>可以不再分解的基本类型，如整型、浮点、字符</p>
-<ul>
-<li>结构类型</li>
-</ul>
-</li>
-<li><p>若干个类型组合而成</p>
-</li>
-</ul>
-<hr>
-<ul>
-<li>抽象数据类型标准格式<ul>
-<li>ADT 抽象数据类型名</li>
-<li>DATA 数据元素之间逻辑关系的定义</li>
-<li>Operation 操作</li>
-<li>endADT</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="线性表2"><a href="#线性表2" class="headerlink" title="线性表2"></a>线性表2</h2><ul>
-<li>定义<ul>
-<li>ADT<ul>
-<li>线性表（List）</li>
-</ul>
-</li>
-<li>Data<ul>
-<li>数据对象集合为{a1,a2,…,an} 每个元素为DataType</li>
-<li>除最后一个元素都有后继 除第一个元素都有前驱</li>
-</ul>
-</li>
-<li>Operation<ul>
-<li>InitList(*L):建立空表</li>
-<li>ListEmpty(L):判断是否为空</li>
-<li>ClearList(*L):清空线性表</li>
-<li>GetElem(L,i,*e):返回第i个位置的元素给e</li>
-<li>LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0</li>
-<li>ListInsert(*L,i,e):第i个位置插入新元素e</li>
-<li>ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</li>
-<li>ListLength(L):返回L的元素个数</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="线性表3"><a href="#线性表3" class="headerlink" title="线性表3"></a>线性表3</h2><ul>
-<li>线性表的物理存储结构<ul>
-<li>顺序存储结构<ul>
-<li>连续的存储单元依次存储数据元素</li>
-<li>预留一定空间</li>
-<li>封装需要三个属性<ul>
-<li>存储空间的起始位置</li>
-<li>线性表的最大存储容量</li>
-<li>线性表的当期长度</li>
-</ul>
-</li>
-<li>第i个数据元素位置可随时推算出:$LOC(ai) = LOC(a1) + (i-1)*c$</li>
-<li>用c表示每个数据元素所占大小</li>
-<li>存储时间性能为$O(1)$,称为随机存储结构</li>
-<li>获得元素操作<ul>
-<li>只需要返回第i-1下标的值就可以</li>
-<li>Status是一个整型，返回0代表ERROR，返回1代表OK</li>
-</ul>
-</li>
-<li>插入元素操作<ul>
-<li>检查表是否满了</li>
-<li>检查i是否在范围内</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>暂时搁置</p>
 ]]></content>
       <tags>
-        <tag>notes</tag>
-        <tag>Data structure and algorithm</tag>
+        <tag>Numpy</tag>
+        <tag>Pandas</tag>
+        <tag>Data Analysis</tag>
+        <tag>Python</tag>
+        <tag>Pattern Recognition</tag>
+        <tag>Matplotlib</tag>
       </tags>
   </entry>
   <entry>
@@ -1323,6 +1061,200 @@
       </tags>
   </entry>
   <entry>
+    <title>线性表</title>
+    <url>/2020/06/11/%E7%BA%BF%E6%80%A7%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><hr>
+<h2 id="线性表1"><a href="#线性表1" class="headerlink" title="线性表1"></a>线性表1</h2><ul>
+<li>线性表的定义<ul>
+<li>线性表（list）：由零个或多个数据元素组成的有限序列，也称为有序表<ul>
+<li>序列：先来后到</li>
+<li>第一个无前驱，最后一个无后继<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>抽象数据类型</p>
+<ul>
+<li>一组性质相同的值的集合以及定义在此集合上的一些操作的总称</li>
+</ul>
+</li>
+<li><p>C语言中数据类型可分为两类</p>
+<ul>
+<li>原子类型</li>
+</ul>
+</li>
+<li><p>可以不再分解的基本类型，如整型、浮点、字符</p>
+<ul>
+<li>结构类型</li>
+</ul>
+</li>
+<li><p>若干个类型组合而成</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>抽象数据类型标准格式<ul>
+<li>ADT 抽象数据类型名</li>
+<li>DATA 数据元素之间逻辑关系的定义</li>
+<li>Operation 操作</li>
+<li>endADT</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性表2"><a href="#线性表2" class="headerlink" title="线性表2"></a>线性表2</h2><ul>
+<li>定义<ul>
+<li>ADT<ul>
+<li>线性表（List）</li>
+</ul>
+</li>
+<li>Data<ul>
+<li>数据对象集合为{a1,a2,…,an} 每个元素为DataType</li>
+<li>除最后一个元素都有后继 除第一个元素都有前驱</li>
+</ul>
+</li>
+<li>Operation<ul>
+<li>InitList(*L):建立空表</li>
+<li>ListEmpty(L):判断是否为空</li>
+<li>ClearList(*L):清空线性表</li>
+<li>GetElem(L,i,*e):返回第i个位置的元素给e</li>
+<li>LocateElem(L,e):查找和e相等的元素，有则返回位置，没有则返回0</li>
+<li>ListInsert(*L,i,e):第i个位置插入新元素e</li>
+<li>ListDelete(*L,i,e):删除第i个位置的元素，用e返回其值</li>
+<li>ListLength(L):返回L的元素个数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性表3"><a href="#线性表3" class="headerlink" title="线性表3"></a>线性表3</h2><ul>
+<li>线性表的物理存储结构<ul>
+<li>顺序存储结构<ul>
+<li>连续的存储单元依次存储数据元素</li>
+<li>预留一定空间</li>
+<li>封装需要三个属性<ul>
+<li>存储空间的起始位置</li>
+<li>线性表的最大存储容量</li>
+<li>线性表的当期长度</li>
+</ul>
+</li>
+<li>第i个数据元素位置可随时推算出:$LOC(ai) = LOC(a1) + (i-1)*c$</li>
+<li>用c表示每个数据元素所占大小</li>
+<li>存储时间性能为$O(1)$,称为随机存储结构</li>
+<li>获得元素操作<ul>
+<li>只需要返回第i-1下标的值就可以</li>
+<li>Status是一个整型，返回0代表ERROR，返回1代表OK</li>
+</ul>
+</li>
+<li>插入元素操作<ul>
+<li>检查表是否满了</li>
+<li>检查i是否在范围内</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+        <tag>Data structure and algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正则表达式</title>
+    <url>/2021/08/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p><img src="data:image/jpeg;base64,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"></p>
+<span id="more"></span>
+
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="python中使用"><a href="#python中使用" class="headerlink" title="python中使用"></a>python中使用</h2><ul>
+<li><p><code>re.search</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
+<p>扫描整个 <em>字符串</em> 找到匹配样式的第一个位置，并返回一个相应的 [匹配对象]。如果没有匹配，就返回一个 <code>None</code> ； 注意这和找到一个零长度匹配是不同的。</p>
+</li>
+<li><p><code>re.match</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
+<p>如果 <em>string</em> 开始的0或者多个字符匹配到了正则表达式样式，就返回一个相应的 [匹配对象]。 如果没有匹配，就返回 <code>None</code> ；注意它跟零长度匹配是不同的</p>
+</li>
+<li><p><code>fullmatch</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
+<!-- more -->
+<p>如果整个 <em>string</em> 匹配到正则表达式样式，就返回一个相应的 [匹配对象] 。 否则就返回一个 <code>None</code> ；注意这跟零长度匹配是不同的。</p>
+</li>
+<li><p><code>split</code>(<em>pattern</em>, <em>string</em>, <em>maxsplit=0</em>, <em>flags=0</em>)</p>
+<ul>
+<li><p>第一个参数：正则表达式</p>
+</li>
+<li><p>第二个参数：要匹配查找的原始字符串；</p>
+</li>
+<li><p>第三个参数：可选参数，表示最大的拆分次数，默认为0，表示全部分割；</p>
+</li>
+<li><p>第四个参数：可选参数，标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等；</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">re.split(<span class="string">&#x27;\.&#x27;</span>, <span class="string">&#x27;www.csdn.com&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;www&#x27;, &#x27;csdn&#x27;, &#x27;com&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>  需要特别注意的是，这个方法并不是完全匹配。它仅仅决定在字符串开始的位置是否匹配。所以当pattern结束时若还有剩余字符，仍然视为成功。想要完全匹配，可以在表达式末尾加上边界匹配符’$’</p>
+<p>  例如：</p>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(‘z’, ‘p.python.p’)</span><br><span class="line"><span class="comment"># [&#x27;p.python.p&#x27;]； 失败返回原string列表</span></span><br><span class="line">    </span><br><span class="line">re.split(‘p’, ‘p.python.p’)</span><br><span class="line"><span class="comment"># [&#x27;&#x27;, &#x27;.&#x27;, &#x27;ython.&#x27;, &#x27;&#x27;]  成功返回新列表</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><code>re.findall</code>(<em>pattern</em>, <em>string</em>, <em>flags=0</em>)</p>
+</li>
+</ul>
+<p>对 <em>string</em> 返回一个不重复的 <em>pattern</em> 的匹配列表， <em>string</em> 从左到右进行扫描，匹配按找到的顺序返回。如果样式里存在一到多个组，就返回一个组合列表；就是一个元组的列表（如果样式里有超过一个组合的话）。空匹配也会包含在结果里。</p>
+<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><ul>
+<li><p><code>[]</code></p>
+<p>匹配[…]中的所有字符</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;[a-z]&#x27;</span>,<span class="string">&#x27;I have a dream.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;h&#x27;, &#x27;a&#x27;, &#x27;v&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;d&#x27;, &#x27;r&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;m&#x27;]</span></span><br><span class="line">re.findall(<span class="string">&#x27;[A-z]&#x27;</span>,<span class="string">&#x27;I have a dream.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;I&#x27;, &#x27;h&#x27;, &#x27;a&#x27;, &#x27;v&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;d&#x27;, &#x27;r&#x27;, &#x27;e&#x27;, &#x27;a&#x27;, &#x27;m&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 特殊内容</span></span><br><span class="line"><span class="comment"># ^再括号里指非</span></span><br><span class="line">re.findall(<span class="string">&#x27;[^A-z]&#x27;</span>,<span class="string">&#x27;I have a dream.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27; &#x27;, &#x27; &#x27;, &#x27; &#x27;, &#x27;.&#x27;]</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p><code>$</code></p>
+<p> 只匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 <code>$</code> 也匹配 ‘\n’ 或 ‘\r’。要匹配 <code>$</code> 字符本身，请使用 `$`。</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;the$&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;the&#x27;]</span></span><br><span class="line"></span><br><span class="line">re.findall(<span class="string">&#x27;The$&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>^</code></p>
+<p>只匹配结束位置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;^The&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;The&#x27;]</span></span><br><span class="line"></span><br><span class="line">re.findall(<span class="string">&#x27;^he&#x27;</span>,<span class="string">&#x27;The dog sda;hf;kthe the&#x27;</span>)</span><br><span class="line"><span class="comment"># []</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>*</code></p>
+<p>匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo*h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooh! oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;oh!&#x27;, &#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooooh!&#x27;]</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>?</code></p>
+<p>匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;colou?r&#x27;</span>,<span class="string">&#x27;color colour colouur&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;color&#x27;, &#x27;colour&#x27;]</span></span><br></pre></td></tr></table></figure></li>
+<li><p><code>+</code></p>
+<p> 匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo+h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooh! oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>.</code></p>
+<p> 匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;beg.n&#x27;</span>,<span class="string">&#x27;begin begun begun beg3n begn&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;begin&#x27;, &#x27;begun&#x27;, &#x27;begun&#x27;, &#x27;beg3n&#x27;]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&#123;n&#125;</code></p>
+<p> 匹配前面的子表达式n次。</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo&#123;2&#125;h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;oooh!&#x27;, &#x27;oooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p> <code>&#123;n,&#125;</code></p>
+<p> 匹配前面的子表达式至少n次且最多匹配 m 次。</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo&#123;1,&#125;h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;oooooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p> <code>&#123;n,m&#125;</code></p>
+<p> 匹配前面的子表达式至少n次。</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">&#x27;oo&#123;1,3&#125;h!&#x27;</span>,<span class="string">&#x27;oh! ooh! oooh! ooooh oooooh!&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;ooh!&#x27;, &#x27;oooh!&#x27;, &#x27;ooooh!&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h2><ul>
+<li><code>\s</code> 空白符 \S 非空白符</li>
+<li><code>\w</code> 字母，数字，下划线 等于[A-Za-z0-9]</li>
+<li><code>\n</code> 换行符</li>
+</ul>
+<h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="数字相关"><a href="#数字相关" class="headerlink" title="数字相关"></a>数字相关</h3><p>1 数字：^[0-9]<em>$<br>2 n位的数字：^\d{n}$<br>3 至少n位的数字：^\d{n,}$<br>4 m-n位的数字：^\d{m,n}$<br>5 零和非零开头的数字：^(0|[1-9][0-9]</em>)$<br>6 非零开头的最多带两位小数的数字：^([1-9][0-9]<em>)+(.[0-9]{1,2})?$<br>7 带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$<br>8 正数、负数、和小数：^(-|+)?\d+(.\d+)?$<br>9 有两位小数的正实数：^[0-9]+(.[0-9]{2})?$<br>10 有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$<br>11 非零的正整数：^[1-9]\d</em>$ 或 ^([1-9][0-9]<em>){1,3}$ 或 ^+?[1-9][0-9]</em>$<br>12 非零的负整数：^-[1-9][]0-9”<em>$ 或 ^-[1-9]\d</em>$<br>13 非负整数：^\d+$ 或 ^[1-9]\d*|0$<br>14 非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$<br>15 非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d<em>.\d</em>|0.\d*[1-9]\d*|0?.0+|0$<br>16 非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*))|0?.0+|0$<br>17 正浮点数：^[1-9]\d<em>.\d</em>|0.\d*[1-9]\d*$ 或 ^(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]<em>.[0-9]+)|([0-9]</em>[1-9][0-9]</em>))$<br>18 负浮点数：^-([1-9]\d<em>.\d</em>|0.\d*[1-9]\d*)$ 或 ^(-(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]<em>.[0-9]+)|([0-9]</em>[1-9][0-9]</em>)))$</p>
+<h3 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h3><p>1 汉字：^[\u4e00-\u9fa5]{0,}$<br>2 英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$<br>3 长度为3-20的所有字符：^.{3,20}$<br>4 由26个英文字母组成的字符串：^[A-Za-z]+$<br>5 由26个大写英文字母组成的字符串：^[A-Z]+$<br>6 由26个小写英文字母组成的字符串：^[a-z]+$<br>7 由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$<br>8 由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$<br>9 中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$<br>10 中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$<br>11 可以输入含有^%&amp;’,;=?$&quot;等字符：[^%&amp;’,;=?$\x22]+<br>12 禁止输入含有<del>的字符：[^</del>\x22]+</p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>Regular Expression</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>绪论</title>
     <url>/2020/06/05/%E7%BB%AA%E8%AE%BA/</url>
     <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><hr>
@@ -1403,9 +1335,97 @@
 ]]></content>
   </entry>
   <entry>
-    <title>yilia</title>
-    <url>/2019/08/04/yilia/</url>
-    <content><![CDATA[<p>yilia里的avatar标记在原本json中已经存在</p>
+    <title>const</title>
+    <url>/2022/01/16/const/</url>
+    <content><![CDATA[<p><img src="https://pbs.twimg.com/media/DVN7nK3X4AA204_?format=jpg&name=large"></p>
+<span id="more"></span>
+
+<h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li><p>类型检查，<code>#define</code>只是简单的字符串替换</p>
+</li>
+<li><p>定义常量，防止修改</p>
+</li>
+<li><p><code>const</code>定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是像<code>#define</code>一样给出的是立即数，所以，<code>const</code>定义的常量在程序运行过程中只有一份拷贝，而<code>#define</code>定义的常量在内存中有若干个拷贝，from <a href="https://blog.csdn.net/Eric_Jo/article/details/4138548">(6条消息) 关于C++ const 的全面总结_亿言-CSDN博客_const</a></p>
+</li>
+<li><p>编译器通常不为普通const常量分配存储空间，而是将它们保存在符号表中，这使得它成为一个编译期间的常量，没有了存储与读内存的操作，使得它的效率也很高</p>
+</li>
+</ul>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>const变量默认为局部变量，如果想在其他文件访问需要前面加extern</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> ext;</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">b = <span class="number">0</span>; <span class="comment">// error: assignment of read-only variable ‘b’</span></span><br><span class="line"><span class="keyword">const</span> string s = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> i,j=<span class="number">0</span> <span class="comment">// error: uninitialized const ‘i’</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><ul>
+<li><p>如果<code>const</code>位于<code>*</code>的左侧，则<code>const</code>就是用来修饰指针所指向的变量，即指针指向为常量</p>
+</li>
+<li><p>如果<code>const</code>位于<code>*</code>的右侧，<code>const</code>就是修饰指针本身，即指针本身是常量。</p>
+</li>
+</ul>
+<ol>
+<li>指向常量的指针</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * a; <span class="comment">//指向const对象的指针或者说指向常量的指针。</span></span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> * a; <span class="comment">//同上</span></span><br><span class="line"><span class="keyword">char</span>* a = <span class="string">&quot;abc&quot;</span>; <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>允许把非const对象的地址赋给指向const对象的指针</strong>。只不过无法通过这个指针修改基础对象，但可以通过其他方法修改</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *ptr;</span><br><span class="line"><span class="keyword">int</span> val = <span class="number">3</span>;</span><br><span class="line">ptr = &amp;val; <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> * <span class="keyword">const</span> a; <span class="comment">//指向类型对象的const指针。或者说常指针、const指针。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">const</span> a; <span class="comment">//指向const对象的const指针。</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>常指针</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ptr = &amp;num; <span class="comment">//指向类型对象的const指针。或者说常指针、const指针。const指针必须初始化！且const指针的值不能修改</span></span><br></pre></td></tr></table></figure>
+
+<p>要指向一个变量而不是一个常量</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> ptr=&amp;num; <span class="comment">//error! const int* -&gt; int*</span></span><br></pre></td></tr></table></figure>
+
+<p>指向常量的常指针</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> ptr = &amp;p; </span><br></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ul>
+<li><p>对于非内部数据类型的输入参数，应该将值传递的方式改为<code>const </code>引用传递，目的是提高效率。</p>
+</li>
+<li><p>对于内部数据类型的输入参数，不存在构造、析构的过程，而复制也非常快，“值传递”和“引用传递”的效率几乎相当。不要将值传递的方式改为<code>const</code> 引用传递，否则既达不到提高效率的目的，又降低了函数的可理解性。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(A a)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> A &amp;a)</span> <span class="comment">//good</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;x)</span> <span class="comment">//bad</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ul>
+<li><p>任何不会修改数据成员的函数都应该声明为<code>const</code>类型。</p>
+</li>
+<li><p>使用<code>const</code>关键字进行说明的成员函数，称为常成员函数。<strong>只有常成员函数才有资格操作常量或常对象</strong>，没有使用<code>const</code>关键字声明的成员函数不能用来操作常对象。</p>
+</li>
+<li><p>对于类中的const成员变量必须通过初始化列表进行初始化</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> people[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Apple</span>(<span class="keyword">int</span> i); </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> apple_number;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Apple::<span class="built_in">Apple</span>(<span class="keyword">int</span> i):<span class="built_in">apple_number</span>(i)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//apple.cpp</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> people[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Apple</span>(<span class="keyword">int</span> i); </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> apple_number;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">take</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;apple.cpp&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">Apple::<span class="built_in">Apple</span>(<span class="keyword">int</span> i):<span class="built_in">apple_number</span>(i)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Apple::add</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Apple::add</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Apple::take</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;take func &quot;</span>&lt;&lt;num&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Apple::getCount</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//    add(); //error add方法并非const修饰，所以运行报错</span></span><br><span class="line">    <span class="keyword">return</span> apple_number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">Apple <span class="title">a</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">    cout&lt;&lt;a.<span class="built_in">getCount</span>()&lt;&lt;endl;</span><br><span class="line">    a.<span class="built_in">add</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="function"><span class="keyword">const</span> Apple <span class="title">b</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">    b.<span class="built_in">add</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译： g++ -o main main.cpp apple.cpp</span></span><br><span class="line"><span class="comment">//结果</span></span><br><span class="line">take func <span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">take func <span class="number">10</span></span><br><span class="line">take func <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
 ]]></content>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>static</title>
+    <url>/2022/01/18/static/</url>
+    <content><![CDATA[<p><img src="https://pbs.twimg.com/media/EYyrqtIWoAAjgNv.jpg"></p>
+<span id="more"></span>
+
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><h3 id="函数中的静态变量"><a href="#函数中的静态变量" class="headerlink" title="函数中的静态变量"></a>函数中的静态变量</h3><p>当变量声明为static时，空间<strong>将在程序的生命周期内分配</strong>。即使多次调用该函数，静态变量的空间也<strong>只分配一次</strong>，前一次调用中的变量值通过下一次函数调用传递。这对于在C / C ++或需要存储先前函数状态的任何其他应用程序非常有用。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>; </span><br><span class="line">    cout &lt;&lt; count &lt;&lt; <span class="string">&quot; &quot;</span>; </span><br><span class="line">    count++; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)  </span><br><span class="line">        <span class="built_in">demo</span>(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="类中的静态变量"><a href="#类中的静态变量" class="headerlink" title="类中的静态变量"></a>类中的静态变量</h3><p>类中的静态变量<strong>由对象共享</strong>。对于不同的对象，不能有相同静态变量的多个副本。也是因为这个原因，静态变量不能使用构造函数初始化。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i; </span><br><span class="line"></span><br><span class="line">    <span class="built_in">Apple</span>() </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// Do nothing </span></span><br><span class="line">    &#125;; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Apple::i = <span class="number">1</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    Apple obj; </span><br><span class="line">    <span class="comment">// prints value of i </span></span><br><span class="line">    cout &lt;&lt; obj.i; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类中的静态函数"><a href="#类中的静态函数" class="headerlink" title="类中的静态函数"></a>类中的静态函数</h3><p>静态成员函数也不依赖于类的对象</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    <span class="keyword">public</span>: </span><br><span class="line">        <span class="comment">// static member function </span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMsg</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;Welcome to Apple!&quot;</span>; </span><br><span class="line">        &#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="comment">// main function </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="comment">// invoking a static member function </span></span><br><span class="line">    Apple::<span class="built_in">printMsg</span>(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
   </entry>
 </search>
