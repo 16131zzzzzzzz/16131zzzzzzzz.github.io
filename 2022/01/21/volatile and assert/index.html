@@ -107,6 +107,8 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p><img src="https://www.explainxkcd.com/wiki/images/3/3a/forgetting.png"></p>
+<span id="more"></span>
+
 <h1 id="volatile-and-assert"><a href="#volatile-and-assert" class="headerlink" title="volatile and assert"></a>volatile and assert</h1><h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p>被 <code>volatile</code> 修饰的变量，在对其进行读写操作时，会引发一些<strong>可观测的副作用</strong>。而这些可观测的副作用，是由<strong>程序之外的因素决定的</strong>。</p>
 <p><code>volatile</code> 会在编译的时候优化一些它认为无效的操作</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>  *output = (<span class="keyword">unsigned</span>  <span class="keyword">int</span> *)<span class="number">0xff800000</span>; <span class="comment">//定义一个IO端口；  </span></span><br><span class="line"><span class="function"><span class="keyword">int</span>   <span class="title">init</span><span class="params">(<span class="keyword">void</span>)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> i;  </span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt; <span class="number">10</span>;i++)</span><br><span class="line">    &#123;  </span><br><span class="line">    *output = i;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 编译器会直接优化为</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">init</span><span class="params">(<span class="keyword">void</span>)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    *output = <span class="number">9</span>;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 但有些情况不希望这种优化发生</span></span><br></pre></td></tr></table></figure>
@@ -184,9 +186,9 @@
   <nav class="article-nav">
     
     
-      <a href="/2022/01/20/vtable%20and%20vptr/" class="article-nav-link">
+      <a href="/2022/01/21/%E4%BD%8D%E5%9F%9F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">vtable and vptr</div>
+        <div class="article-nav-title">位域</div>
       </a>
     
   </nav>
