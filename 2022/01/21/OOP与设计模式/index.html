@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">468</span>
+            <span class="post-count">833</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -107,6 +107,8 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p><img src="https://qph.fs.quoracdn.net/main-qimg-2d9b082048e2a7a93a1e6199c9c70ee3-lq"></p>
+<span id="more"></span>
+
 <h1 id="OOP与设计模式"><a href="#OOP与设计模式" class="headerlink" title="OOP与设计模式"></a>OOP与设计模式</h1><ul>
 <li><p>抽象：是一种反映真实世界对象或现象中特定内容的模型，它能高精度地反映所有与特定内容相关的详细信息，同时忽略其他内容。</p>
 </li>
@@ -154,6 +156,44 @@
 </ul>
 </li>
 </ul>
+<h2 id="SOLID原则"><a href="#SOLID原则" class="headerlink" title="SOLID原则"></a>SOLID原则</h2><h3 id="S-ingle-Responsibility-Principle"><a href="#S-ingle-Responsibility-Principle" class="headerlink" title="[S]ingle Responsibility Principle"></a>[S]ingle Responsibility Principle</h3><ul>
+<li>尽量让每个类只负责软件中的一个功能，并将该功能完全封装（你也可称之为隐藏）在该类中。</li>
+</ul>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126105401639.png" alt="image-20220126105401639"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126105413092.png" alt="image-20220126105413092"></p>
+<p>###[O]pen/Closed Principle</p>
+<ul>
+<li>在实现新功能时能保持已有代码不变。</li>
+<li>对于扩展，类应该是“开放”的；对于修改，类则应是“封闭”的。</li>
+</ul>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126141335431.png" alt="image-20220126141335431"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126141348322.png" alt="image-20220126141348322"></p>
+<h3 id="L-iskov-Substitution-Principle"><a href="#L-iskov-Substitution-Principle" class="headerlink" title="[L]iskov Substitution Principle"></a>[L]iskov Substitution Principle</h3><ul>
+<li>子类方法的参数类型必须与其超类的参数类型相匹配或更加抽象</li>
+<li>子类方法的返回值类型必须与超类方法的返回值类型或是其子类别相匹配</li>
+<li>子类中的方法不应抛出基础方法预期之外的异常类型</li>
+<li>子类不应该加强其前置条件</li>
+<li>子类不能削弱其后置条</li>
+<li>超类的不变量必须</li>
+<li>子类不能修改超类中私有成员变量的值</li>
+</ul>
+<h3 id="I-nterface-Segregation-Principle"><a href="#I-nterface-Segregation-Principle" class="headerlink" title="[I]nterface Segregation Principle"></a>[I]nterface Segregation Principle</h3><ul>
+<li>尽量缩小接口的范围，使得客户端的类不必实现其不需要的行为</li>
+</ul>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126160857817.png" alt="image-20220126160857817"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126160907977.png" alt="image-20220126160907977"></p>
+<h3 id="D-ependency-Inversion-principle"><a href="#D-ependency-Inversion-principle" class="headerlink" title="[D]ependency Inversion principle"></a>[D]ependency Inversion principle</h3><ul>
+<li><p>高层次的类不应该依赖于低层次的类。 两者都应该依赖于抽象接口。抽象接口不应依赖于具体实现。具体实现应该依赖于抽象接口</p>
+<ul>
+<li><p><strong>低层次的类</strong>实现基础操作（例如磁盘操作、传输网络数据和连接数据库等）。</p>
+</li>
+<li><p><strong>高层次类</strong>包含复杂业务逻辑以指导低层次类执行特定操作。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126161103850.png" alt="image-20220126161103850"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220126161112244.png" alt="image-20220126161112244"></p>
  
       <!-- reward -->
       
