@@ -106,9 +106,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="https://i.redd.it/8ceh0d66fdz51.jpg"></p>
-<span id="more"></span>
-
+  <p><img src="https://i.redd.it/8ceh0d66fdz51.jpg"><span id="more"></span></p>
 <h1 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h1><p>“ 位域 “ 或 “ 位段 “(Bit field)为一种数据结构，可以把数据以位的形式紧凑的储存，并允许程序员对此结构的位进行操作。这种数据结构的一个好处是它可以使数据单元节省储存空间，当程序需要成千上万个数据单元时，这种方法就显得尤为重要。第二个好处是位段可以很方便的访问一个整数值的部分内容从而可以简化程序源代码。而这种数据结构的缺点在于，位段实现<strong>依赖于具体的机器和系统</strong>，在不同的平台可能有不同的结果，这导致了位段在本质上是<strong>不可移植的</strong>。</p>
 <h2 id="声明方法"><a href="#声明方法" class="headerlink" title="声明方法"></a>声明方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bit_field_name</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    type member_name : width;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
