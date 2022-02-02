@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>抽象工厂</title>
+      <link href="/2022/01/28/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/"/>
+      <url>/2022/01/28/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220128195659444.png" alt="image-20220128195659444"></p><span id="more"></span><h1 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h1><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220128204736919.png" alt="image-20220128204736919"></p><ol><li><p> <strong>抽象产品</strong>（Abstract Product）为构成系列产品的一组不同但相关的产品声明接口。</p></li><li><p> <strong>具体产品</strong>（Concrete Product）是抽象产品的多种不同类型实现。所有变体（维多利亚/现代）都必须实现相应的抽象产品（椅子/沙发）。</p></li><li><p> <strong>抽象工厂</strong>（Abstract Factory）接口声明了一组创建各种抽象产品的方法。</p></li><li><p> <strong>具体工厂</strong>（Concrete Factory）实现抽象工厂的构建方法。每个具体工厂都对应特定产品变体，且仅创建此种产品变体。 </p></li><li><p>尽管具体工厂会对具体产品进行初始化，其构建方法签名必须返回相应的抽象产品。这样，使用工厂类的客户端代码就不会与工厂创建的特定产品变体耦合。<strong>客户端</strong>（Client）只需通过抽象接口调用工厂和产品对象，就能与任何具体工厂/产品变体交互。</p></li></ol><h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ul><li><p>如果代码需要与多个不同系列的相关产品交互，但是由于无法提前获取相关信息，或者出于对未来扩展性的考虑，你不希望代码基于产品的具体类进行构建，在这种情况下，你可以使用抽象工厂。</p></li><li><p>如果你有一个基于一组抽象方法的类，且其主要功能因此变得不明确，那么在这种情况下可以考虑使用抽象工厂模式。</p></li></ul><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ul><li><p>Pros</p><ul><li><p>你可以确保同一工厂生成的产品相互匹配。</p></li><li><p>你可以避免客户端和具体产品代码的耦合。</p></li><li><p>单一职责原则。你可以将产品生成代码抽取到同一位置，使得代码易于维护。</p></li><li><p>开闭原则。向应用程序中引入新产品变体时，你无需修改客户端代码。</p></li></ul></li><li><p>Cons</p><ul><li>由于采用该模式需要向应用中引入众多接口和类，代码可能会比之前更加复杂</li></ul></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> OOP </tag>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>工厂方法</title>
       <link href="/2022/01/27/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
       <url>/2022/01/27/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</url>
