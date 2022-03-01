@@ -113,7 +113,6 @@
 <p>虚拟表实际上非常简单，虽然用文字描述有点复杂。首先，<strong>每个使用虚函数的类（或者从使用虚函数的类派生）都有自己的虚拟表</strong>。该表只是编译器在编译时设置的静态数组。虚拟表包含可由类的对象调用的每个虚函数的一个条目。此表中的每个条目只是一个函数指针，指向该类可访问的派生函数。</p>
 <p>其次，编译器还会添加一个<strong>隐藏指向基类</strong>的指针，我们称之为vptr。vptr在创建类实例时自动设置，以便指向该类的虚拟表。与this指针不同，this指针实际上是编译器用来解析自引用的函数参数，vptr是一个真正的指针。</p>
 <p>因此，它使每个类对象的分配大一个指针的大小。这也意味着vptr由派生类继承，这很重要。</p>
-<p><img src="https://light-city.club/sc/assets/images/base.jpg" alt="base"></p>
 <p>C++的动态多态性是通过虚函数来实现的。简单的说，通过virtual函数，指向子类的基类指针可以调用子类的函数</p>
  
       <!-- reward -->
@@ -180,11 +179,11 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/01/21/%E4%BD%8D%E5%9F%9F/" class="article-nav-link">
+      <a href="/2022/01/21/volatile%20and%20assert/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            位域
+            volatile and assert
           
         </div>
       </a>

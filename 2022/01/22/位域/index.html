@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>vtable and vptr |  16131zzzzzzzz</title>
+      <title>位域 |  16131zzzzzzzz</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="https://i.loli.net/2021/09/08/gyhY6AmLfeFqjc1.png" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-function pointer"
+  id="post-位域"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  vtable and vptr
+  位域
 </h1>
  
 
@@ -74,15 +74,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/01/18/function%20pointer/" class="article-date">
-  <time datetime="2022-01-17T16:00:00.000Z" itemprop="datePublished">2022-01-18</time>
+      <a href="/2022/01/22/%E4%BD%8D%E5%9F%9F/" class="article-date">
+  <time datetime="2022-01-21T16:00:00.000Z" itemprop="datePublished">2022-01-22</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">378</span>
+            <span class="post-count">823</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -106,19 +106,44 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="https://hackaday.com/wp-content/uploads/2018/04/cpointers.jpg"></p>
-<span id="more"></span>
+  <p><img src="https://i.redd.it/8ceh0d66fdz51.jpg"><span id="more"></span></p>
+<h1 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h1><p>“ 位域 “ 或 “ 位段 “(Bit field)为一种数据结构，可以把数据以位的形式紧凑的储存，并允许程序员对此结构的位进行操作。这种数据结构的一个好处是它可以使数据单元节省储存空间，当程序需要成千上万个数据单元时，这种方法就显得尤为重要。第二个好处是位段可以很方便的访问一个整数值的部分内容从而可以简化程序源代码。而这种数据结构的缺点在于，位段实现<strong>依赖于具体的机器和系统</strong>，在不同的平台可能有不同的结果，这导致了位段在本质上是<strong>不可移植的</strong>。</p>
+<h2 id="声明方法"><a href="#声明方法" class="headerlink" title="声明方法"></a>声明方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bit_field_name</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    type member_name : width;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Function-Pointer"><a href="#Function-Pointer" class="headerlink" title="Function Pointer"></a>Function Pointer</h1><p>定义形式<strong>：返回类型 （类名称::*函数成员名称）（参数类型，参数类型，参数类型，….);</strong> </p>
-<p>1、函数指针变量跟普通的指针一样在32位系统下大小都为4。但是函数指针常量的大小为1.</p>
-<p>2、函数指针变量和函数指针常量存储在内存的不同位置。</p>
-<p>3、为负值的函数指针变量（全局）的值为0。</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/windlaughing/archive/2013/04/10/3012012.html">深入理解C语言函数指针 - windlaughing - 博客园 (cnblogs.com)</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;this is fun1 call\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;this is fun2 call:%d %c\n&quot;</span>, k, c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">int</span></span> (*pfun1)() = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in"><span class="keyword">void</span></span> (*pfun2)(<span class="keyword">int</span>, <span class="keyword">char</span>) = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    pfun1 = fun1; <span class="comment">//第一种赋值方法</span></span><br><span class="line">    a = <span class="built_in">pfun1</span>();  <span class="comment">//第一种调用方法（推荐）</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);</span><br><span class="line">    b = (*pfun1)();<span class="comment">//第二种调用方法</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);</span><br><span class="line">    pfun2 = &amp;fun2;<span class="comment">//第二种赋值方法（推荐，因为和其他数据指针赋值方法一致）</span></span><br><span class="line">    <span class="built_in">pfun2</span>(<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    (*pfun2)(<span class="number">2</span>,<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">PRCODE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> code1: <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> cdde2: <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> code3: <span class="number">8</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">PRCODE</span> <span class="title">prcode</span>;</span></span><br><span class="line"></span><br><span class="line">prcode.code1 = <span class="number">0</span>;</span><br><span class="line">prcode.code2 = <span class="number">3</span>;</span><br><span class="line">procde.code3 = <span class="number">102</span>;</span><br></pre></td></tr></table></figure>
 
-<p>函数指针数组：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">add</span><span class="params">(<span class="keyword">float</span> a,<span class="keyword">float</span> b)</span></span>&#123;<span class="keyword">return</span> a+b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">minu</span><span class="params">(<span class="keyword">float</span> a,<span class="keyword">float</span> b)</span></span>&#123;<span class="keyword">return</span> a-b;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//定义一个函数指针数组，大小为2</span></span><br><span class="line">    <span class="comment">//里面存放float (*)(float, float)类型的指针</span></span><br><span class="line">    <span class="built_in"><span class="keyword">float</span></span> (*pfunArry[<span class="number">2</span>])(<span class="keyword">float</span>, <span class="keyword">float</span>) = &#123;&amp;add, &amp;minu&#125;;</span><br><span class="line">    <span class="keyword">double</span> k = pfunArry[<span class="number">0</span>](<span class="number">3.33</span>,<span class="number">2.22</span>);<span class="comment">// 调用</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%f\n&quot;</span>, k);</span><br><span class="line">    k = pfunArry[<span class="number">1</span>](<span class="number">3.33</span>,<span class="number">2.22</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%f\n&quot;</span>, k);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>赋值时要注意值的大小不能超过位域成员的容量，例如 prcode.code3 为 8 Bits 的位域成员，其容量为 2^8 = 256，即赋值范围应为 [0,255]。</p>
+<h2 id="位域的对齐"><a href="#位域的对齐" class="headerlink" title="位域的对齐"></a>位域的对齐</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stuff</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field1: <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field2: <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field3: <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<p><code>field1</code> + <code>field2</code> = 34 Bits，超出 32 Bits, 编译器会将<code>field2</code>移位至下一个 unsigned int 单元存放， stuff.field1 和 stuff.field2 之间会留下一个 2 Bits 的空隙， stuff.field3 紧跟在 stuff.field2 之后，该结构现在大小为 2 * 32 = 64 Bits。</p>
+<p>这个空洞可以用之前提到的未命名的位域成员填充，我们也可以使用一个宽度为 0 的未命名位域成员令下一位域成员与下一个整数对齐。 例如:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stuff</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field1: <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>       : <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field2: <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>       : <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> field3: <span class="number">3</span>; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct stuff s1= &#123;20,8,6&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stuff</span> <span class="title">s1</span>;</span></span><br><span class="line">s1.field1 = <span class="number">20</span>;</span><br><span class="line">s1.field2 = <span class="number">8</span>;</span><br><span class="line">s1.field3 = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="重映射"><a href="#重映射" class="headerlink" title="重映射"></a>重映射</h3><p>声明一个 大小为 32 Bits 的位域</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">box</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> ready:     <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> error:     <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> command:   <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> sector_no: <span class="number">24</span>;</span><br><span class="line">&#125;b1;</span><br></pre></td></tr></table></figure>
+
+<p>利用重映射将位域归零</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p = (<span class="keyword">int</span> *) &amp;b1;  <span class="comment">// 将 &quot;位域结构体的地址&quot; 映射至 &quot;整形（int*) 的地址&quot; </span></span><br><span class="line">*p = <span class="number">0</span>;                <span class="comment">// 清除 s1，将各成员归零</span></span><br></pre></td></tr></table></figure>
+
+<p>利用联合 (union) 将 32 Bits 位域重映射至 unsigned int 型。在任意时刻，联合中只能有一个数据成员可以有值。当给联合中某个成员赋值之后，该联合中的其它成员就变成未定义状态了。union的size就是最大的内部组件大小。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">u_box</span> &#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">box</span> <span class="title">st_box</span>;</span>     </span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> ui_box;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>联合（union）是一种节省空间的特殊的类，一个 union 可以有多个数据成员，但是在任意时刻只有一个数据成员可以有值。当某个成员被赋值后其他成员变为未定义状态。联合有如下特点：</p>
+<ul>
+<li>默认访问控制符为 public</li>
+<li>可以含有构造函数、析构函数</li>
+<li>不能含有引用类型的成员</li>
+<li>不能继承自其他类，不能作为基类</li>
+<li>不能含有虚函数</li>
+<li>匿名 union 在定义所在作用域可直接访问 union 成员</li>
+<li>匿名 union 不能包含 protected 成员或 private 成员</li>
+<li>全局匿名联合必须是静态（static）的</li>
+</ul>
  
       <!-- reward -->
       
@@ -171,7 +196,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/18/function%20pointer/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/22/%E4%BD%8D%E5%9F%9F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -184,19 +209,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/01/19/this%20and%20inline/" class="article-nav-link">
+      <a href="/2022/01/22/OOP%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            this and inline
+            OOP与设计模式
           
         </div>
       </a>
     
     
-      <a href="/2022/01/18/static/" class="article-nav-link">
+      <a href="/2022/01/21/volatile%20and%20assert/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">static</div>
+        <div class="article-nav-title">volatile and assert</div>
       </a>
     
   </nav>
