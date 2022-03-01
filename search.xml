@@ -1686,80 +1686,6 @@
       </tags>
   </entry>
   <entry>
-    <title>绪论</title>
-    <url>/2020/06/05/%E7%BB%AA%E8%AE%BA/</url>
-    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><hr>
-<ul>
-<li>程序设计=数据结构+算法</li>
-<li>数据结构是关系</li>
-</ul>
-<hr>
-<ul>
-<li>逻辑结构<ul>
-<li>集合结构</li>
-<li>线性结构</li>
-<li>树形结构</li>
-<li>图形结构<span id="more"></span></li>
-</ul>
-</li>
-<li>物理结构(如何把数据元素存储到计算机的存储器中)<ul>
-<li>顺序存储结构<ul>
-<li>放在地址连续的储存单元里</li>
-</ul>
-</li>
-<li>链式存储结构<ul>
-<li>时常要变化的结构</li>
-<li>每个元素指向下一个元素地址</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>算法的基本特征<ul>
-<li>输入<ul>
-<li>有零个或多个输入</li>
-</ul>
-</li>
-<li>输出<ul>
-<li>算法至少有一个或输出</li>
-</ul>
-</li>
-<li>有穷性<ul>
-<li>有限步骤后自动结束</li>
-<li>每一步在有限时间内结束</li>
-</ul>
-</li>
-<li>确定性<ul>
-<li>有确定的含义</li>
-</ul>
-</li>
-<li>可行性</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>算法设计要求<ul>
-<li>正确性</li>
-<li>无语法错误</li>
-<li>对合法输入正确输出</li>
-<li>对非法输入产生满足规格的说明</li>
-<li>对故意刁难的测试有正确输出</li>
-<li>可读性</li>
-<li>健壮性</li>
-<li>时间效率低和存储量低</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>notes</tag>
-        <tag>Data structure and algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法效率度量</title>
     <url>/2020/06/05/%E7%AE%97%E6%B3%95%E6%95%88%E7%8E%87%E5%BA%A6%E9%87%8F/</url>
     <content><![CDATA[<h1 id="算法效率度量方法"><a href="#算法效率度量方法" class="headerlink" title="算法效率度量方法"></a>算法效率度量方法</h1><hr>
@@ -1866,6 +1792,80 @@
 <ul>
 <li>算法空间复杂度<ul>
 <li>算法运行所用空间</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+        <tag>Data structure and algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绪论</title>
+    <url>/2020/06/05/%E7%BB%AA%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><hr>
+<ul>
+<li>程序设计=数据结构+算法</li>
+<li>数据结构是关系</li>
+</ul>
+<hr>
+<ul>
+<li>逻辑结构<ul>
+<li>集合结构</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图形结构<span id="more"></span></li>
+</ul>
+</li>
+<li>物理结构(如何把数据元素存储到计算机的存储器中)<ul>
+<li>顺序存储结构<ul>
+<li>放在地址连续的储存单元里</li>
+</ul>
+</li>
+<li>链式存储结构<ul>
+<li>时常要变化的结构</li>
+<li>每个元素指向下一个元素地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>算法的基本特征<ul>
+<li>输入<ul>
+<li>有零个或多个输入</li>
+</ul>
+</li>
+<li>输出<ul>
+<li>算法至少有一个或输出</li>
+</ul>
+</li>
+<li>有穷性<ul>
+<li>有限步骤后自动结束</li>
+<li>每一步在有限时间内结束</li>
+</ul>
+</li>
+<li>确定性<ul>
+<li>有确定的含义</li>
+</ul>
+</li>
+<li>可行性</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>算法设计要求<ul>
+<li>正确性</li>
+<li>无语法错误</li>
+<li>对合法输入正确输出</li>
+<li>对非法输入产生满足规格的说明</li>
+<li>对故意刁难的测试有正确输出</li>
+<li>可读性</li>
+<li>健壮性</li>
+<li>时间效率低和存储量低</li>
 </ul>
 </li>
 </ul>
