@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">373</span>
+            <span class="post-count">558</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -113,7 +113,12 @@
 <p>虚拟表实际上非常简单，虽然用文字描述有点复杂。首先，<strong>每个使用虚函数的类（或者从使用虚函数的类派生）都有自己的虚拟表</strong>。该表只是编译器在编译时设置的静态数组。虚拟表包含可由类的对象调用的每个虚函数的一个条目。此表中的每个条目只是一个函数指针，指向该类可访问的派生函数。</p>
 <p>其次，编译器还会添加一个<strong>隐藏指向基类</strong>的指针，我们称之为vptr。vptr在创建类实例时自动设置，以便指向该类的虚拟表。与this指针不同，this指针实际上是编译器用来解析自引用的函数参数，vptr是一个真正的指针。</p>
 <p>因此，它使每个类对象的分配大一个指针的大小。这也意味着vptr由派生类继承，这很重要。</p>
-<p>C++的动态多态性是通过虚函数来实现的。简单的说，通过virtual函数，指向子类的基类指针可以调用子类的函数</p>
+<p>C++的动态多态性是通过虚函数来实现的。简单的说，通过virtual函数，指向子类的基类指针可以调用子类的函数。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoel/article/details/1948051"> C++ 虚函数表解析_陈皓专栏　【空谷幽兰，心如皓月】-CSDN博客_虚函数表</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;Base::f&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;Base::g&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">h</span><span class="params">()</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;Base::h&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/o_vtable1.jpg" alt="img"></p>
+<p>包含纯虚函数的类称为抽象类（Abstract Class）。之所以说它抽象，是因为它无法实例化，也就是无法创建对象。纯虚函数没有函数体，只有函数声明，在虚函数声明的结尾加上<code>=0</code>，表明此函数为纯虚函数。纯虚函数没有函数体，不是完整的函数，无法调用，也无法为其分配内存空间。</p>
  
       <!-- reward -->
       

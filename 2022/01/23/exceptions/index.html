@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>struct |  16131zzzzzzzz</title>
+      <title>exceptions |  16131zzzzzzzz</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="https://i.loli.net/2021/09/08/gyhY6AmLfeFqjc1.png" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-struct"
+  id="post-exceptions"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  struct
+  exceptions
 </h1>
  
 
@@ -74,15 +74,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/02/26/struct/" class="article-date">
-  <time datetime="2022-02-25T16:00:00.000Z" itemprop="datePublished">2022-02-26</time>
+      <a href="/2022/01/23/exceptions/" class="article-date">
+  <time datetime="2022-01-22T16:00:00.000Z" itemprop="datePublished">2022-01-23</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">180</span>
+            <span class="post-count">634</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -106,15 +106,107 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src=""></p>
+  <p><img src="https://miro.medium.com/max/400/1*LaiblpVE0dAZbMXSgCvrLQ.jpeg"></p>
 <span id="more"></span>
 
-<h1 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h1><p>c中的struct内不能有函数，不能继承，如果名字和函数名冲突可以正常调用。</p>
-<p>c++中的struct中可以定义函数，可以使用访问修饰，可以直接不带struct关键词使用。</p>
-<p>若结构体的名字与函数名相同，可以正常运行且正常的调用，但是定义结构体变量时候只能用带struct的。</p>
-<p>比如继承：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span>         </span><br><span class="line">    <span class="keyword">int</span> v1;</span><br><span class="line"><span class="comment">//    private:   //error!</span></span><br><span class="line">        <span class="keyword">int</span> v3;</span><br><span class="line">    <span class="keyword">public</span>:   <span class="comment">//显示声明public</span></span><br><span class="line">        <span class="keyword">int</span> v2;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;       </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,<span class="string">&quot;Base&quot;</span>);</span><br><span class="line">    &#125;;    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span>:</span>Base &#123;         </span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> v2;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;       </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,<span class="string">&quot;Derived&quot;</span>);</span><br><span class="line">    &#125;;    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Base *b=<span class="keyword">new</span> <span class="built_in">Derived</span>();</span><br><span class="line">    b-&gt;<span class="built_in">print</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="exceptions"><a href="#exceptions" class="headerlink" title="exceptions"></a>exceptions</h1><p>捕获异常</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">// 可能抛出异常的语句</span></span><br><span class="line">&#125;<span class="built_in"><span class="keyword">catch</span></span>(exceptionType variable)&#123;</span><br><span class="line">    <span class="comment">// 处理异常的语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p><code>exceptionType</code>指明了可以处理的异常类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;exception&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str = <span class="string">&quot;http://c.biancheng.net&quot;</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">char</span> ch1 = str[<span class="number">100</span>];</span><br><span class="line">        cout&lt;&lt;ch1&lt;&lt;endl;</span><br><span class="line">    &#125;<span class="built_in"><span class="keyword">catch</span></span>(exception e)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[1]out of bound!&quot;</span>&lt;&lt;endl; <span class="comment">//检测不到异常</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">char</span> ch2 = str.<span class="built_in">at</span>(<span class="number">100</span>);</span><br><span class="line">        cout&lt;&lt;ch2&lt;&lt;endl;</span><br><span class="line">    &#125;<span class="built_in"><span class="keyword">catch</span></span>(exception &amp;e)&#123;  <span class="comment">//exception类位于&lt;exception&gt;头文件中</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[2]out of bound!&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发生异常时必须将异常明确地抛出，try 才能检测到；如果不抛出来，即使有异常 try 也检测不到。</p>
+<p>异常一旦抛出，会立刻被 try 检测到，并且不会再执行异常点（异常发生位置）后面的语句，而是直接跳转到<code>catch</code>后面。</p>
+<p>（不要使用）throw 用作异常规范：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">func</span> <span class="params">(<span class="keyword">char</span> param)</span> <span class="title">throw</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>, exception)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>抛出其他类型的异常，try 将无法捕获，只能终止程序。</p>
+<p>各种异常</p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/114Q24150-0.jpg" alt="C++ exception类层次图"></p>
+<p>exception 类的直接派生类：</p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>logic_error</td>
+<td>逻辑错误。</td>
+</tr>
+<tr>
+<td>runtime_error</td>
+<td>运行时错误。</td>
+</tr>
+<tr>
+<td>bad_alloc</td>
+<td>使用 new 或 new[ ] 分配内存失败时抛出的异常。</td>
+</tr>
+<tr>
+<td>bad_typeid</td>
+<td>使用 typeid 操作一个 NULL <a target="_blank" rel="noopener" href="http://c.biancheng.net/c/80/">指针</a>，而且该指针是带有虚函数的类，这时抛出 bad_typeid 异常。</td>
+</tr>
+<tr>
+<td>bad_cast</td>
+<td>使用 dynamic_cast 转换失败时抛出的异常。</td>
+</tr>
+<tr>
+<td>ios_base::failure</td>
+<td>io 过程中出现的异常。</td>
+</tr>
+<tr>
+<td>bad_exception</td>
+<td>这是个特殊的异常，如果函数的异常列表里声明了 bad_exception 异常，当函数内部抛出了异常列表中没有的异常时，如果调用的 unexpected() 函数中抛出了异常，不论什么类型，都会被替换为 bad_exception 类型。</td>
+</tr>
+</tbody></table>
+<p>  logic_error 的派生类： </p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length_error</td>
+<td>试图生成一个超出该类型最大长度的对象时抛出该异常，例如 vector 的 resize 操作。</td>
+</tr>
+<tr>
+<td>domain_error</td>
+<td>参数的值域错误，主要用在数学函数中，例如使用一个负值调用只能操作非负数的函数。</td>
+</tr>
+<tr>
+<td>out_of_range</td>
+<td>超出有效范围。</td>
+</tr>
+<tr>
+<td>invalid_argument</td>
+<td>参数不合适。在标准库中，当利用string对象构造 bitset 时，而 string 中的字符不是 0 或1 的时候，抛出该异常。</td>
+</tr>
+</tbody></table>
+<p>runtime_error 的派生类： </p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>range_error</td>
+<td>计算结果超出了有意义的值域范围。</td>
+</tr>
+<tr>
+<td>overflow_error</td>
+<td>算术计算上溢。</td>
+</tr>
+<tr>
+<td>underflow_error</td>
+<td>算术计算下溢。</td>
+</tr>
+</tbody></table>
+<p>from <a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2333.html">C++ exception类：C++标准异常的基类 (biancheng.net)</a></p>
  
       <!-- reward -->
       
@@ -167,7 +259,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/02/26/struct/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/23/exceptions/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -180,19 +272,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/02/27/Latex%E5%85%AC%E5%BC%8F/" class="article-nav-link">
+      <a href="/2022/01/24/environment/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            LaTeX
+            environment
           
         </div>
       </a>
     
     
-      <a href="/2022/02/25/extern/" class="article-nav-link">
+      <a href="/2022/01/22/OOP%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">extern</div>
+        <div class="article-nav-title">OOP与设计模式</div>
       </a>
     
   </nav>

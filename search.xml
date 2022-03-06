@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LaTeX</title>
+    <url>/2022/02/27/Latex%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<p><img src=""></p>
+<span id="more"></span>
+
+<h1 id="LaTeX公式"><a href="#LaTeX公式" class="headerlink" title="LaTeX公式"></a>LaTeX公式</h1><h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><a href="https://www.latexlive.com/">在线LaTeX公式编辑器-编辑器 (latexlive.com)</a></p>
+<p><a href="https://mathpix.com/">Mathpix Snip</a></p>
+<h2 id="速查表"><a href="#速查表" class="headerlink" title="速查表"></a>速查表</h2><p><img src="https://img-blog.csdnimg.cn/20191030230804862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3NjI2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191030230752154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3NjI2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/9368615-2051eb8ef8627902.png" alt="img"></p>
+<h2 id="公式大全"><a href="#公式大全" class="headerlink" title="公式大全"></a>公式大全</h2><p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/20190916101433335.png" alt="img"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/9368615-3d2020da2a5cfd58.png" alt="img"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/9368615-7fcbdefb396ba056.png" alt="img"></p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/9368615-2ac87b614fed0f3f.png" alt="img"></p>
+<p><a href="https://www.jianshu.com/p/22117d964baf">LATEX 公式总结 - 简书 (jianshu.com)</a></p>
+]]></content>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>struct</title>
     <url>/2022/02/26/struct/</url>
     <content><![CDATA[<p><img src=""></p>
@@ -189,6 +210,165 @@
       </tags>
   </entry>
   <entry>
+    <title>继承与多态</title>
+    <url>/2022/01/25/%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/</url>
+    <content><![CDATA[<p><img src="https://i.redd.it/yxgt7f3dr3831.jpg"></p>
+<span id="more"></span>
+
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="访问权限"><a href="#访问权限" class="headerlink" title="访问权限"></a>访问权限</h2><p>基类的保护成员可以在派生类的成员函数中被访问，派生类的成员函数只能访问所作用的那个对象（即this指针指向的对象）的基类保护成员，不能访问其他基类对象的基类保护成员。<br>$$<br>\begin{array}{|l|l|l|l|}<br>\hline \text { 类成员/继承方式 } &amp; \text { public继承 } &amp; \text { protected继承 } &amp; \text { private继承 } \<br>\hline \begin{array}{l}<br>\text { 基类的public成员 }<br>\end{array} &amp; \text { 派生类的public成员 } &amp; \text { 派生类的protected成员 } &amp; \text { 派生类的private成员 } \<br>\hline \begin{array}{l}<br>\text { 基类的protected成员 }<br>\end{array} &amp; \text { 派生类的protected成员 } &amp; \text { 派生类的protected成员 } &amp; \text { 派生类的private成员 } \<br>\hline \begin{array}{l}<br>\text { 基类的private成员 }<br>\end{array} &amp; \begin{array}{l}<br>\text { 不可见，只能通过基类接口访问 }<br>\end{array} &amp; \begin{array}{l}<br>\text { 不可见，只能通过基类接口访问 }<br>\end{array} &amp; \begin{array}{l}<br>\text { 不可见，只能通过基类接口访问 }<br>\end{array} \<br>\hline<br>\end{array}<br>$$<br>基类private成员在派生类中无论以什么方式继承都是不可见的。如果基类成员不想在类外直接访问，但需要在派生类中能访问，就定义为protected。<strong>可见，保护成员限定符protected是因为继承才出现的。</strong>class默认的继承方式是private，struct默认的继承方式是private。</p>
+<p><strong>友元关系不能继承</strong>，也就是说基类友元不能访问子类私有和保护成员。</p>
+<p><strong>基类定义了static静态成员，则整个继承体系里只有一个这样的成员。无论派生出多少个子类，都有一个static成员实例。</strong></p>
+<h2 id="兼容性规则"><a href="#兼容性规则" class="headerlink" title="兼容性规则"></a>兼容性规则</h2><p>1.子类对象可以赋值给父类对象<br>2.父类对象不能赋值给子类对象<br>3.父类的指针/引用可以指向子类对象<br>4.子类的指针/引用不能指向父类对象（必须强转，但也只是改变父类里面有的东西）</p>
+<p> <strong>派生类对象</strong>可以赋值给<strong>基类对象/基类的指针/基类的引用</strong>。这里有个形象的说法叫“切片”或者“切割”。<strong>寓意把派生类中父类那部分切来赋值过去</strong>。基类对象不能赋值给派生类对象。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>子类和父类中有同名成员，<strong>子类成员将屏蔽父类对同名成员的直接访问，这种情况叫“隐藏”，也叫“重定义”</strong>（在子类成员函数中，可以使用 <strong>基类::基类成员 显示访问</strong> ），但一般不会在子类和父类里命名同样名字的变量；</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Student的_num和Person的_num构成隐藏关系，可以看出这样的代码虽然能跑，但是非常容易混淆</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	string _name = <span class="string">&quot;小李子&quot;</span>; <span class="comment">//姓名</span></span><br><span class="line">	<span class="keyword">int</span> _num = <span class="number">111</span>; <span class="comment">//身份证号</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> :</span><span class="keyword">public</span> Person</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;姓名： &quot;</span> &lt;&lt; _name &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;身份证： &quot;</span> &lt;&lt; Person::_num &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;学号： &quot;</span> &lt;&lt; _num &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="keyword">int</span> _num = <span class="number">999</span>; <span class="comment">//学号</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Student s1;</span><br><span class="line">	s1.<span class="built_in">Print</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="默认函数"><a href="#默认函数" class="headerlink" title="默认函数"></a>默认函数</h2><p><img src="https://img-blog.csdnimg.cn/20190603110911780.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N0dWR5aGFyZGk=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>如果基类没有默认的构造函数，则必须在派生类构造函数的初始化列表阶段显示调用</p>
+<p>from <a href="https://blog.csdn.net/studyhardi/article/details/90744785">(8条消息) C++中的继承_studyhardi的博客-CSDN博客_c++继承</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Person</span>(<span class="keyword">const</span> <span class="keyword">char</span>* name = <span class="string">&quot;Romeo&quot;</span>)</span><br><span class="line">		:_name(name)&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Person()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Person</span>(<span class="keyword">const</span> Person&amp; p)</span><br><span class="line">		:_name(p._name)&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Person(const Person&amp; p)&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Person&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Person&amp; p)&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Person&amp; operator=(const Person&amp; p)&quot;</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span> != &amp;p)&#123;</span><br><span class="line">			_name = p._name;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	~<span class="built_in">Person</span>()&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;~Person()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	string _name; <span class="comment">//姓名</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> :</span><span class="keyword">public</span> Person</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Student</span>(<span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">int</span> num)</span><br><span class="line">		:<span class="built_in">Person</span>(name) <span class="comment">//调用父类的构造函数完成从父类继承来的成员的初始化</span></span><br><span class="line">		, _num(num)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Student()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Student</span>(<span class="keyword">const</span> Student&amp; s)</span><br><span class="line">		:<span class="built_in">Person</span>(s) <span class="comment">//调用父类的拷贝构造函数，其中也为“切片”操作，因为父类的拷贝构造函数的参数为引用</span></span><br><span class="line">		, _num(s._num)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Student(const Student&amp; s)&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Student&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Student&amp; s)&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;Student&amp; operator=(const Student&amp; s)&quot;</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span> != &amp;s)&#123;</span><br><span class="line">			Person::<span class="keyword">operator</span>=(s);  <span class="comment">//调用基类的</span></span><br><span class="line">			_num = s._num;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	~<span class="built_in">Student</span>()&#123;</span><br><span class="line">		<span class="comment">//此处不需要显示调用父类的析构函数，编译器会自动调用</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;~Student()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="keyword">int</span> _num; <span class="comment">//学号</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Student <span class="title">s1</span><span class="params">(<span class="string">&quot;jack&quot;</span>, <span class="number">18</span>)</span></span>;</span><br><span class="line">	<span class="function">Student <span class="title">s2</span><span class="params">(s1)</span></span>;</span><br><span class="line">	<span class="function">Student <span class="title">s3</span><span class="params">(<span class="string">&quot;rose&quot;</span>, <span class="number">17</span>)</span></span>;</span><br><span class="line">	s1 = s3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">Test</span>();</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><p>C++提供多态的目的是：可以通过基类指针对所有派生类（包括直接派生和间接派生）的成员变量和成员函数进行“全方位”的访问，尤其是成员函数。如果没有多态，我们只能访问成员变量。</p>
+]]></content>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>environment</title>
+    <url>/2022/01/24/environment/</url>
+    <content><![CDATA[<p><img src="https://imgs.xkcd.com/comics/python_environment.png"></p>
+<span id="more"></span>
+
+<h1 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h1><h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><h3 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h3><p>临时使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package</span><br></pre></td></tr></table></figure>
+
+<p>设为默认</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<h3 id="conda"><a href="#conda" class="headerlink" title="conda"></a>conda</h3><p>显示</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --show channels</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>exceptions</title>
+    <url>/2022/01/23/exceptions/</url>
+    <content><![CDATA[<p><img src="https://miro.medium.com/max/400/1*LaiblpVE0dAZbMXSgCvrLQ.jpeg"></p>
+<span id="more"></span>
+
+<h1 id="exceptions"><a href="#exceptions" class="headerlink" title="exceptions"></a>exceptions</h1><p>捕获异常</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">// 可能抛出异常的语句</span></span><br><span class="line">&#125;<span class="built_in"><span class="keyword">catch</span></span>(exceptionType variable)&#123;</span><br><span class="line">    <span class="comment">// 处理异常的语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>exceptionType</code>指明了可以处理的异常类型。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;exception&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str = <span class="string">&quot;http://c.biancheng.net&quot;</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">char</span> ch1 = str[<span class="number">100</span>];</span><br><span class="line">        cout&lt;&lt;ch1&lt;&lt;endl;</span><br><span class="line">    &#125;<span class="built_in"><span class="keyword">catch</span></span>(exception e)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[1]out of bound!&quot;</span>&lt;&lt;endl; <span class="comment">//检测不到异常</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">char</span> ch2 = str.<span class="built_in">at</span>(<span class="number">100</span>);</span><br><span class="line">        cout&lt;&lt;ch2&lt;&lt;endl;</span><br><span class="line">    &#125;<span class="built_in"><span class="keyword">catch</span></span>(exception &amp;e)&#123;  <span class="comment">//exception类位于&lt;exception&gt;头文件中</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[2]out of bound!&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发生异常时必须将异常明确地抛出，try 才能检测到；如果不抛出来，即使有异常 try 也检测不到。</p>
+<p>异常一旦抛出，会立刻被 try 检测到，并且不会再执行异常点（异常发生位置）后面的语句，而是直接跳转到<code>catch</code>后面。</p>
+<p>（不要使用）throw 用作异常规范：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">func</span> <span class="params">(<span class="keyword">char</span> param)</span> <span class="title">throw</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">char</span>, exception)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>抛出其他类型的异常，try 将无法捕获，只能终止程序。</p>
+<p>各种异常</p>
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/114Q24150-0.jpg" alt="C++ exception类层次图"></p>
+<p>exception 类的直接派生类：</p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>logic_error</td>
+<td>逻辑错误。</td>
+</tr>
+<tr>
+<td>runtime_error</td>
+<td>运行时错误。</td>
+</tr>
+<tr>
+<td>bad_alloc</td>
+<td>使用 new 或 new[ ] 分配内存失败时抛出的异常。</td>
+</tr>
+<tr>
+<td>bad_typeid</td>
+<td>使用 typeid 操作一个 NULL <a href="http://c.biancheng.net/c/80/">指针</a>，而且该指针是带有虚函数的类，这时抛出 bad_typeid 异常。</td>
+</tr>
+<tr>
+<td>bad_cast</td>
+<td>使用 dynamic_cast 转换失败时抛出的异常。</td>
+</tr>
+<tr>
+<td>ios_base::failure</td>
+<td>io 过程中出现的异常。</td>
+</tr>
+<tr>
+<td>bad_exception</td>
+<td>这是个特殊的异常，如果函数的异常列表里声明了 bad_exception 异常，当函数内部抛出了异常列表中没有的异常时，如果调用的 unexpected() 函数中抛出了异常，不论什么类型，都会被替换为 bad_exception 类型。</td>
+</tr>
+</tbody></table>
+<p>  logic_error 的派生类： </p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length_error</td>
+<td>试图生成一个超出该类型最大长度的对象时抛出该异常，例如 vector 的 resize 操作。</td>
+</tr>
+<tr>
+<td>domain_error</td>
+<td>参数的值域错误，主要用在数学函数中，例如使用一个负值调用只能操作非负数的函数。</td>
+</tr>
+<tr>
+<td>out_of_range</td>
+<td>超出有效范围。</td>
+</tr>
+<tr>
+<td>invalid_argument</td>
+<td>参数不合适。在标准库中，当利用string对象构造 bitset 时，而 string 中的字符不是 0 或1 的时候，抛出该异常。</td>
+</tr>
+</tbody></table>
+<p>runtime_error 的派生类： </p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>说  明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>range_error</td>
+<td>计算结果超出了有意义的值域范围。</td>
+</tr>
+<tr>
+<td>overflow_error</td>
+<td>算术计算上溢。</td>
+</tr>
+<tr>
+<td>underflow_error</td>
+<td>算术计算下溢。</td>
+</tr>
+</tbody></table>
+<p>from <a href="http://c.biancheng.net/view/2333.html">C++ exception类：C++标准异常的基类 (biancheng.net)</a></p>
+]]></content>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OOP与设计模式</title>
     <url>/2022/01/22/OOP%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p><img src="https://qph.fs.quoracdn.net/main-qimg-2d9b082048e2a7a93a1e6199c9c70ee3-lq"></p>
@@ -363,7 +543,12 @@
 <p>虚拟表实际上非常简单，虽然用文字描述有点复杂。首先，<strong>每个使用虚函数的类（或者从使用虚函数的类派生）都有自己的虚拟表</strong>。该表只是编译器在编译时设置的静态数组。虚拟表包含可由类的对象调用的每个虚函数的一个条目。此表中的每个条目只是一个函数指针，指向该类可访问的派生函数。</p>
 <p>其次，编译器还会添加一个<strong>隐藏指向基类</strong>的指针，我们称之为vptr。vptr在创建类实例时自动设置，以便指向该类的虚拟表。与this指针不同，this指针实际上是编译器用来解析自引用的函数参数，vptr是一个真正的指针。</p>
 <p>因此，它使每个类对象的分配大一个指针的大小。这也意味着vptr由派生类继承，这很重要。</p>
-<p>C++的动态多态性是通过虚函数来实现的。简单的说，通过virtual函数，指向子类的基类指针可以调用子类的函数</p>
+<p>C++的动态多态性是通过虚函数来实现的。简单的说，通过virtual函数，指向子类的基类指针可以调用子类的函数。</p>
+<p><a href="https://blog.csdn.net/haoel/article/details/1948051"> C++ 虚函数表解析_陈皓专栏　【空谷幽兰，心如皓月】-CSDN博客_虚函数表</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;Base::f&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;Base::g&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">h</span><span class="params">()</span> </span>&#123; cout &lt;&lt; <span class="string">&quot;Base::h&quot;</span> &lt;&lt; endl; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/o_vtable1.jpg" alt="img"></p>
+<p>包含纯虚函数的类称为抽象类（Abstract Class）。之所以说它抽象，是因为它无法实例化，也就是无法创建对象。纯虚函数没有函数体，只有函数声明，在虚函数声明的结尾加上<code>=0</code>，表明此函数为纯虚函数。纯虚函数没有函数体，不是完整的函数，无法调用，也无法为其分配内存空间。</p>
 ]]></content>
       <tags>
         <tag>cpp</tag>
