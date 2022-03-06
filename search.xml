@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo</title>
+    <url>/2022/03/05/hexo/</url>
+    <content><![CDATA[<p><img src="https://pbs.twimg.com/media/EYyrqtIWoAAjgNv.jpg"></p>
+<span id="more"></span>]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LaTeX</title>
-    <url>/2022/02/27/Latex%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<p><img src=""></p>
+    <url>/2022/02/27/Latex/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/latex_comic.jpg">)</p>
 <span id="more"></span>
 
-<h1 id="LaTeX公式"><a href="#LaTeX公式" class="headerlink" title="LaTeX公式"></a>LaTeX公式</h1><h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><a href="https://www.latexlive.com/">在线LaTeX公式编辑器-编辑器 (latexlive.com)</a></p>
+<h1 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h1><h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><a href="https://www.latexlive.com/">在线LaTeX公式编辑器-编辑器 (latexlive.com)</a></p>
 <p><a href="https://mathpix.com/">Mathpix Snip</a></p>
 <h2 id="速查表"><a href="#速查表" class="headerlink" title="速查表"></a>速查表</h2><p><img src="https://img-blog.csdnimg.cn/20191030230804862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3NjI2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20191030230752154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3NjI2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -40,8 +49,8 @@
   </entry>
   <entry>
     <title>extern</title>
-    <url>/2022/02/25/extern/</url>
-    <content><![CDATA[<p><img src=""></p>
+    <url>/2022/02/23/extern/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/r_77251_3xSNn.jpg"></p>
 <span id="more"></span>
 
 <h1 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h1><p>在C++中常在头文件见到<code>extern &quot;C&quot;</code>修饰函数，是用于C++链接在C语言模块中定义的函数。<code>extern</code>用于标示变量或者函数的定义在别的文件中，<code>extern &quot;C&quot;</code>提示编译器遇到此变量和函数时在其他模块中寻找其定义告诉链接器去寻找<code>_add</code>这类的C语言符号，而不是经过C++修饰的符号。</p>
@@ -75,6 +84,8 @@
     <title>编译与链接</title>
     <url>/2022/02/08/%E7%BC%96%E8%AF%91%E4%B8%8E%E9%93%BE%E6%8E%A5/</url>
     <content><![CDATA[<p><img src="https://imgs.xkcd.com/comics/compiling.png"></p>
+<span id="more"></span>
+
 <h1 id="编译与链接"><a href="#编译与链接" class="headerlink" title="编译与链接"></a>编译与链接</h1><h2 id="编译与链接的过程"><a href="#编译与链接的过程" class="headerlink" title="编译与链接的过程"></a>编译与链接的过程</h2><p>预处理（Prepressing）、 编译（Compilation）、汇编（Assembly）和链接（Linking）</p>
 <p><img src="https://gitee.com/zhuhaojia2001/pic_go_pics/raw/master/img/image-20220208103928489.png" alt="image-20220208103928489"></p>
 <h3 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h3><p>首先是源代码文件<code>hello.c</code>和相关的头文件，如<code>stdio.h</code>等被预编译器预编译成一个.i文件。相当于如下命令：</p>
@@ -620,6 +631,26 @@
       </tags>
   </entry>
   <entry>
+    <title>static</title>
+    <url>/2022/01/18/static/</url>
+    <content><![CDATA[<p><img src="https://pbs.twimg.com/media/EYyrqtIWoAAjgNv.jpg"></p>
+<span id="more"></span>
+
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><h3 id="函数中的静态变量"><a href="#函数中的静态变量" class="headerlink" title="函数中的静态变量"></a>函数中的静态变量</h3><p>当变量声明为static时，空间<strong>将在程序的生命周期内分配</strong>。即使多次调用该函数，静态变量的空间也<strong>只分配一次</strong>，前一次调用中的变量值通过下一次函数调用传递。这对于在C / C ++或需要存储先前函数状态的任何其他应用程序非常有用。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>; </span><br><span class="line">    cout &lt;&lt; count &lt;&lt; <span class="string">&quot; &quot;</span>; </span><br><span class="line">    count++; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)  </span><br><span class="line">        <span class="built_in">demo</span>(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="类中的静态变量"><a href="#类中的静态变量" class="headerlink" title="类中的静态变量"></a>类中的静态变量</h3><p>类中的静态变量<strong>由对象共享</strong>。对于不同的对象，不能有相同静态变量的多个副本。也是因为这个原因，静态变量不能使用构造函数初始化。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i; </span><br><span class="line"></span><br><span class="line">    <span class="built_in">Apple</span>() </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// Do nothing </span></span><br><span class="line">    &#125;; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Apple::i = <span class="number">1</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    Apple obj; </span><br><span class="line">    <span class="comment">// prints value of i </span></span><br><span class="line">    cout &lt;&lt; obj.i; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类中的静态函数"><a href="#类中的静态函数" class="headerlink" title="类中的静态函数"></a>类中的静态函数</h3><p>静态成员函数也不依赖于类的对象</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    <span class="keyword">public</span>: </span><br><span class="line">        <span class="comment">// static member function </span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMsg</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;Welcome to Apple!&quot;</span>; </span><br><span class="line">        &#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="comment">// main function </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="comment">// invoking a static member function </span></span><br><span class="line">    Apple::<span class="built_in">printMsg</span>(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sizeof and virtual</title>
     <url>/2022/01/18/sizeof%20and%20virtual/</url>
     <content><![CDATA[<p><img src="https://i.redd.it/zlirmbdar7b71.png"></p>
@@ -639,26 +670,6 @@
 <p>抽象类可以有构造函数</p>
 <p>构造函数不能是虚函数，而析构函数可以是虚析构函数</p>
 <p><strong>静态函数不可以声明为虚函数，同时也不能被const 和 volatile关键字修饰</strong>，static成员函数不属于任何类对象或类实例，所以即使给此函数加上virutal也是没有任何意义</p>
-]]></content>
-      <tags>
-        <tag>cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>static</title>
-    <url>/2022/01/18/static/</url>
-    <content><![CDATA[<p><img src="https://pbs.twimg.com/media/EYyrqtIWoAAjgNv.jpg"></p>
-<span id="more"></span>
-
-<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><h3 id="函数中的静态变量"><a href="#函数中的静态变量" class="headerlink" title="函数中的静态变量"></a>函数中的静态变量</h3><p>当变量声明为static时，空间<strong>将在程序的生命周期内分配</strong>。即使多次调用该函数，静态变量的空间也<strong>只分配一次</strong>，前一次调用中的变量值通过下一次函数调用传递。这对于在C / C ++或需要存储先前函数状态的任何其他应用程序非常有用。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>; </span><br><span class="line">    cout &lt;&lt; count &lt;&lt; <span class="string">&quot; &quot;</span>; </span><br><span class="line">    count++; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)  </span><br><span class="line">        <span class="built_in">demo</span>(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> </span><br></pre></td></tr></table></figure>
-
-<h3 id="类中的静态变量"><a href="#类中的静态变量" class="headerlink" title="类中的静态变量"></a>类中的静态变量</h3><p>类中的静态变量<strong>由对象共享</strong>。对于不同的对象，不能有相同静态变量的多个副本。也是因为这个原因，静态变量不能使用构造函数初始化。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i; </span><br><span class="line"></span><br><span class="line">    <span class="built_in">Apple</span>() </span><br><span class="line">    &#123; </span><br><span class="line">        <span class="comment">// Do nothing </span></span><br><span class="line">    &#125;; </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Apple::i = <span class="number">1</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    Apple obj; </span><br><span class="line">    <span class="comment">// prints value of i </span></span><br><span class="line">    cout &lt;&lt; obj.i; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="类中的静态函数"><a href="#类中的静态函数" class="headerlink" title="类中的静态函数"></a>类中的静态函数</h3><p>静态成员函数也不依赖于类的对象</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    <span class="keyword">public</span>: </span><br><span class="line">        <span class="comment">// static member function </span></span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printMsg</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;Welcome to Apple!&quot;</span>; </span><br><span class="line">        &#125;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="comment">// main function </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="comment">// invoking a static member function </span></span><br><span class="line">    Apple::<span class="built_in">printMsg</span>(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <tags>
         <tag>cpp</tag>
