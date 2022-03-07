@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>vtable and vptr |  16131zzzzzzzz</title>
+      <title>引用和指针 |  16131zzzzzzzz</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="https://i.loli.net/2021/09/08/gyhY6AmLfeFqjc1.png" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-function pointer"
+  id="post-引用与指针"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  vtable and vptr
+  引用和指针
 </h1>
  
 
@@ -74,15 +74,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/01/18/function%20pointer/" class="article-date">
-  <time datetime="2022-01-17T16:00:00.000Z" itemprop="datePublished">2022-01-18</time>
+      <a href="/2022/01/22/%E5%BC%95%E7%94%A8%E4%B8%8E%E6%8C%87%E9%92%88/" class="article-date">
+  <time datetime="2022-01-21T16:00:00.000Z" itemprop="datePublished">2022-01-22</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">378</span>
+            <span class="post-count">176</span>
         </span>
     </span>
 
@@ -106,18 +106,31 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="https://hackaday.com/wp-content/uploads/2018/04/cpointers.jpg"></p>
+  <p><img src="https://i.pinimg.com/originals/85/05/83/85058377aae647e2819634e53d746b99.png"></p>
 <span id="more"></span>
 
-<h1 id="Function-Pointer"><a href="#Function-Pointer" class="headerlink" title="Function Pointer"></a>Function Pointer</h1><p>定义形式<strong>：返回类型 （类名称::*函数成员名称）（参数类型，参数类型，参数类型，….);</strong> </p>
-<p>1、函数指针变量跟普通的指针一样在32位系统下大小都为4。但是函数指针常量的大小为1.</p>
-<p>2、函数指针变量和函数指针常量存储在内存的不同位置。</p>
-<p>3、为负值的函数指针变量（全局）的值为0。</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/windlaughing/archive/2013/04/10/3012012.html">深入理解C语言函数指针 - windlaughing - 博客园 (cnblogs.com)</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;this is fun1 call\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;this is fun2 call:%d %c\n&quot;</span>, k, c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">int</span></span> (*pfun1)() = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in"><span class="keyword">void</span></span> (*pfun2)(<span class="keyword">int</span>, <span class="keyword">char</span>) = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    pfun1 = fun1; <span class="comment">//第一种赋值方法</span></span><br><span class="line">    a = <span class="built_in">pfun1</span>();  <span class="comment">//第一种调用方法（推荐）</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);</span><br><span class="line">    b = (*pfun1)();<span class="comment">//第二种调用方法</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);</span><br><span class="line">    pfun2 = &amp;fun2;<span class="comment">//第二种赋值方法（推荐，因为和其他数据指针赋值方法一致）</span></span><br><span class="line">    <span class="built_in">pfun2</span>(<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    (*pfun2)(<span class="number">2</span>,<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>函数指针数组：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">add</span><span class="params">(<span class="keyword">float</span> a,<span class="keyword">float</span> b)</span></span>&#123;<span class="keyword">return</span> a+b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">minu</span><span class="params">(<span class="keyword">float</span> a,<span class="keyword">float</span> b)</span></span>&#123;<span class="keyword">return</span> a-b;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//定义一个函数指针数组，大小为2</span></span><br><span class="line">    <span class="comment">//里面存放float (*)(float, float)类型的指针</span></span><br><span class="line">    <span class="built_in"><span class="keyword">float</span></span> (*pfunArry[<span class="number">2</span>])(<span class="keyword">float</span>, <span class="keyword">float</span>) = &#123;&amp;add, &amp;minu&#125;;</span><br><span class="line">    <span class="keyword">double</span> k = pfunArry[<span class="number">0</span>](<span class="number">3.33</span>,<span class="number">2.22</span>);<span class="comment">// 调用</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%f\n&quot;</span>, k);</span><br><span class="line">    k = pfunArry[<span class="number">1</span>](<span class="number">3.33</span>,<span class="number">2.22</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%f\n&quot;</span>, k);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="引用和指针"><a href="#引用和指针" class="headerlink" title="引用和指针"></a>引用和指针</h1><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><table>
+<thead>
+<tr>
+<th>引用</th>
+<th>指针</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>必须初始化</td>
+<td>可以不初始化</td>
+</tr>
+<tr>
+<td>不能为空</td>
+<td>可以为空</td>
+</tr>
+<tr>
+<td>不能更换目标</td>
+<td>可以更换目标</td>
+</tr>
+</tbody></table>
+<p>由于引用不能为空，所以我们在使用引用的时候不需要测试其合法性，而在使用指针的时候需要首先判断指针是否为空指针，否则可能会引起程序崩溃。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_p</span><span class="params">(<span class="keyword">int</span>* p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  	<span class="keyword">if</span>(p != null_ptr)    <span class="comment">//对p所指对象赋值时需先判断p是否为空指针</span></span><br><span class="line">    	*p = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_r</span><span class="params">(<span class="keyword">int</span>&amp; r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    r = <span class="number">3</span>;    <span class="comment">//由于引用不能为空，所以此处无需判断r的有效性就可以对r直接赋值</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
 
  
       <!-- reward -->
@@ -171,7 +184,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/18/function%20pointer/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/22/%E5%BC%95%E7%94%A8%E4%B8%8E%E6%8C%87%E9%92%88/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -184,19 +197,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/01/19/this%20and%20inline/" class="article-nav-link">
+      <a href="/2022/01/22/%E4%BD%8D%E5%9F%9F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            this and inline
+            位域
           
         </div>
       </a>
     
     
-      <a href="/2022/01/18/static/" class="article-nav-link">
+      <a href="/2022/01/21/volatile%20and%20assert/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">static</div>
+        <div class="article-nav-title">volatile and assert</div>
       </a>
     
   </nav>
