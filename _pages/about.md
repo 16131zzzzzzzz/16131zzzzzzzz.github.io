@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "All About Haojia Zhu"
+title: "自我介绍"
 author_profile: true
 redirect_from: 
   - /about/
@@ -9,7 +9,8 @@ redirect_from:
 
 我是朱浩嘉，来自东南大学人工智能专业，目前在读直博研究生。我的主要研究方向包括检索增强生成（RAG）、智能体（Agent）与城市计算（Urban Computing）。在科研中，我关注大模型在复杂信息检索、空间推理和真实场景任务中的能力提升，并在城市区域预训练、空间实体解析等方向开展了多项研究工作，成果已发表于 KDD 2025、EMNLP 2025 等国际顶会。同时，我参与多个开源与创新项目，包括拥有 1.5k Stars 的 EveryoneNobel 图像生成系统，以及国家级一等奖“挑战杯”项目。
 
-===
+---
+
 # 论文
 * **[Urban Region Pre-training and Prompting: A Graph-based Approach](https://dblp.org/rec/conf/kdd/Jin0KZSLSZ25)**
   *KDD 2025*
@@ -29,7 +30,8 @@ redirect_from:
 * **[MetaSync: Relaxing Synchronization Frequency in Distributed Urban Traffic Simulation](https://dblp.org/rec/conf/cscwd/ZhuJ22)**
   *CSCWD 2022*
 
-===
+---
+
 # 开源项目
 
 * **EveryoneNobel（1.5k Stars & 91 Forks）**
@@ -45,7 +47,7 @@ redirect_from:
 * **GBDT-SPARSE、多模态讽刺检测等项目**
   覆盖机器学习、计算机视觉与 NLP 多个方向。
 
-===
+---
 
 # 实习经历
 
@@ -55,7 +57,7 @@ redirect_from:
   * 构建业务级高效数据处理链路
   * 为电商业务提供可落地的数据优化方案
 
-===
+---
 
 # 🏅 奖项与荣誉
 
