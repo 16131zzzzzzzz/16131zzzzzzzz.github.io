@@ -3,34 +3,24 @@ layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
+redirect_from:
+  - /cv/
+  - /resume
+  - /cv-json/
+  - /resume-json
 ---
+
+{% include base_path %}
+
+<p>我是朱浩嘉，来自东南大学人工智能专业，目前在读直博研究生。我的主要研究方向包括检索增强生成（RAG）、智能体（Agent）与城市计算（Urban Computing）。</p>
+
+<p><a href="{{ base_path }}/files/zhj_cv.pdf">下载简历（PDF）</a></p>
 
 {% if site.author.googlescholar %}
   <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
 {% endif %}
 
-{% include base_path %}
+<h2>论文</h2>
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
-
+{% capture publication_list %}{% include publication-list.md %}{% endcapture %}
+{{ publication_list | markdownify }}
